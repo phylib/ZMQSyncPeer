@@ -2,23 +2,31 @@
 from client import Client
 from server import Server
 import argparse
-class Peer:
-    clients = []
+import threading
+
+class Peer (threading.Thread):
+
     def __init__(self, n, port, others):
-        # 1 publisher
+        '''   # 1 publisher
         # n subscribers
         self.server = Server(port)
         self.server.start()  # Start publisher thread
         for i in range(n):
             self.clients.append(Client(port, others[i], i))
-            self.clients[i].start()  # Start subscriber threads
+            self.clients[i].start()  # Start subscriber threads '''
+        self.clients = []
+        self.server = Server(port)
+        for i in range(n):
+            self.clients.append(Client(port, others[i], i))
+        threading.Thread.__init__(self)
 
+    def run(self):
+        self.server.start()
+        for i in range(len(self.clients)):
+            self.clients[i].start()
 
-
-
-    def shutdown(self):
-
-        self.server.shutdown()
+    #def shutdown(self):
+        #self.server.shutdown()
 
 if __name__ == '__main__':
     # Read cmd params

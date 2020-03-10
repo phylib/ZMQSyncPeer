@@ -19,10 +19,10 @@ class Client (threading.Thread):
         self.id = clientID
         self.hostport = hostport
         self.address = address
-        print("[CLIENT %d]: my address is %s" % (self.id, self.address))
         threading.Thread.__init__(self)
 
     def run(self):
+        print("[CLIENT %d]: my address is %s" % (self.id, self.address))
         print("[CLIENT %d]: Collecting updates from weather server…" %self.id)
         self.socket.connect("tcp://localhost:%d" %(self.hostport) )
         # Subscribe to zipcode, default is NYC, 10001
