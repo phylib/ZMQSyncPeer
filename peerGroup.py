@@ -9,11 +9,10 @@ class peerGroup:
         # n peers --> n addresses
         # 1 peer = 1 server + (n-1) clients
         for i in range(n):
-            others = addresses[:]
+            others = addresses.split(', ')[:]
             hostport = int(others[i].split(':')[1])
             del others[i]
-            #print("Others: " + str(others))
-            self.peers.append(Peer(n-1, hostport, others ))
+            self.peers.append(Peer(i, n-1, hostport, others))
 
     def printInfo(self):
         for i in range(len(self.peers)):
@@ -23,8 +22,23 @@ class peerGroup:
                 print("\tClient %d: %s" % (client.id, client.address))
 
 if __name__ == '__main__':
-    myGroup = peerGroup(4, ["localhost:5556", "localhost:5557", "localhost:5558", "localhost:5559"])
-    myGroup.printInfo()
+    parser = argparse.ArgumentParser(description='Start a peergroup  N peers.')
+    parser.add_argument('--N', type=int,
+                        help='the number of peers in the group')
+
+    parser.add_argument('--addresses', type=str,
+                        help='IP-address and port of the peers')
+
+    args = parser.parse_args()
+
+    if(args.N != len(args.addresses.split(', '))):
+        raise ValueError('Number of peers must be the same as the number addresses!')
+
+    #"localhost:5556, localhost:5557, localhost:5558, localhost:5559"
+    myGroup = peerGroup(args.N, args.addresses)
+    #myGroup.printInfo()
+    for peer in myGroup.peers:
+       peer.start()
 
 
 
