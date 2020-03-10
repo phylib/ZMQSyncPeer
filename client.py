@@ -12,19 +12,19 @@ import zmq
 import threading
 
 class Client (threading.Thread):
-    def __init__(self, port, clientID=0):
+    def __init__(self, hostport, clientID=0):
         #  Socket to talk to server
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.SUB)
         self.id = clientID
-        self.port = port
+        self.hostport = hostport
         threading.Thread.__init__(self)
 
     def run(self):
         print("[CLIENT %d]: Collecting updates from weather server…" %self.id)
-        self.socket.connect("tcp://localhost:%d" %(self.port) )
+        self.socket.connect("tcp://localhost:%d" %(self.hostport) )
         # Subscribe to zipcode, default is NYC, 10001
-        self.zip_filter = str(self.port)
+        self.zip_filter = str(self.hostport)
 
         # Python 2 - ascii bytes to unicode str
         if isinstance(self.zip_filter, bytes):
