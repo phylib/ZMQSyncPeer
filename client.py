@@ -12,19 +12,16 @@ import zmq
 import threading
 
 class Client (threading.Thread):
-    def __init__(self, peerID, hostport, address, clientID=0):
+    def __init__(self, hostport, address):
         #  Socket to talk to server
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.SUB)
-        self.peerID = peerID
-        self.id = clientID
         self.hostport = hostport
         self.address = address
         threading.Thread.__init__(self)
 
     def run(self):
-        print("[CLIENT %d.%d]: my address is %s" % (self.peerID, self.id, self.address))
-        print("[CLIENT %d.%d]: Collecting updates from weather server…" %(self.peerID, self.id))
+        print("[%s]: Collecting updates from weather server…" %(self.address))
         self.socket.connect("tcp://localhost:%d" %(self.hostport) )
         # Subscribe to zipcode, default is NYC, 10001
         self.zip_filter = str(self.hostport)
@@ -39,12 +36,12 @@ class Client (threading.Thread):
 
         for update_nbr in range(5):
             string = self.socket.recv_string()
-            print(("[CLIENT %d.%d]: Got update " + string) % (self.peerID, self.id))
+            print(("[%s]: Got update " + string) % (self.address))
             zipcode, temperature, relhumidity = string.split()
             total_temp += int(temperature)
 
-        print("[CLIENT %d.%d]: Average temperature for zipcode '%s' was %dF " % (
-            self.peerID, self.id, self.zip_filter, total_temp / (update_nbr + 1))
+        print("[%s]: Average temperature for zipcode '%s' was %dF " % (
+            self.address, self.zip_filter, total_temp / (update_nbr + 1))
                 )
 
 '''if __name__ == '__main__':

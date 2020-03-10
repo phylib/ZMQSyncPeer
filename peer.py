@@ -6,7 +6,7 @@ import threading
 
 class Peer (threading.Thread):
 
-    def __init__(self, id, n, port, others):
+    def __init__(self, n, port, others):
         '''   # 1 publisher
         # n subscribers
         self.server = Server(port)
@@ -14,11 +14,10 @@ class Peer (threading.Thread):
         for i in range(n):
             self.clients.append(Client(port, others[i], i))
             self.clients[i].start()  # Start subscriber threads '''
-        self.id = id
         self.clients = []
-        self.server = Server(self.id, port)
+        self.server = Server(port)
         for i in range(n):
-            self.clients.append(Client(self.id, port, others[i], i))
+            self.clients.append(Client(port, others[i]))
         threading.Thread.__init__(self)
 
     def run(self):

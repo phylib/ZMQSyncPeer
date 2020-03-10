@@ -12,7 +12,7 @@ class peerGroup:
             others = addresses.split(', ')[:]
             hostport = int(others[i].split(':')[1])
             del others[i]
-            self.peers.append(Peer(i, n-1, hostport, others))
+            self.peers.append(Peer(n-1, hostport, others))
 
     def printInfo(self):
         for i in range(len(self.peers)):

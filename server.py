@@ -12,11 +12,10 @@ import time
 
 class Server (threading.Thread):
 
-    def __init__(self, peerID, port):
+    def __init__(self,port):
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.PUB)
         self.port = port
-        self.peerID = peerID
         self.socket.bind("tcp://*:%d" %(self.port))
         threading.Thread.__init__(self)
 
@@ -28,7 +27,7 @@ class Server (threading.Thread):
             relhumidity = randrange(10, 60)
             updateString = str(zipcode) + " " + str(temperature) + " " + str(relhumidity)
             self.socket.send_string(updateString)
-            print("[SERVER %d]: sent update %s"  %(self.peerID, updateString))
+            print("[localhost:%d]: sent update %s"  %(self.port, updateString))
             time.sleep(0.5)  # set to 0.5
 
 
