@@ -4,33 +4,33 @@ from server import Server
 import argparse
 class Peer:
     clients = []
-    def __init__(self, n):
+    def __init__(self, port, n):
         # 1 publisher
         # n subscriber
-        self.server = Server()
-        self.server.run() # Start publisher thread
-        #for i in range(n):
-        #    self.clients.append(Client())
-        #    self.clients[len(self.clients)-1].start()
+        self.server = Server(port)
+        self.server.start()  # Start publisher thread
+        for  i in range(n):
+            self.clients.append(Client(port, i))
+            self.clients[i].start()
 
-        pass
+
+
 
     def shutdown(self):
 
         self.server.shutdown()
 
 if __name__ == '__main__':
-    print("Hello World")
+    Peer(5556, 4)
     # Read cmd params
-
-    parser = argparse.ArgumentParser(description='Process some integers.')
+    '''parser = argparse.ArgumentParser(description='Process some integers.')
     parser.add_argument('integers', metavar='N', type=int, nargs='+',
                         help='an integer for the accumulator')
     parser.add_argument('--sum', dest='accumulate', action='store_const',
                         const=sum, default=max,
                         help='sum the integers (default: find the max)')
 
-    args = parser.parse_args()
+    args = parser.parse_args()'''
     # Start the client
 
     # Kill the client...

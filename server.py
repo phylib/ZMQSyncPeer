@@ -12,16 +12,17 @@ import time
 
 class Server (threading.Thread):
 
-    def __init__(self):
+    def __init__(self, port):
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.PUB)
-        self.socket.bind("tcp://*:5556" )
+        self.port = port
+        self.socket.bind("tcp://*:%d" %(self.port))
         threading.Thread.__init__(self)
 
 
     def run(self):
         while True:
-            zipcode = 10001
+            zipcode = self.port
             temperature = randrange(-80, 135)
             relhumidity = randrange(10, 60)
             updateString = str(zipcode) + " " + str(temperature) + " " + str(relhumidity)
@@ -32,5 +33,5 @@ class Server (threading.Thread):
 
 
 if __name__ == '__main__':
-    server = Server()
+    server = Server(5556)
     server.run()

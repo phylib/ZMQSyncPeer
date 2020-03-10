@@ -12,19 +12,19 @@ import zmq
 import threading
 
 class Client (threading.Thread):
-    def __init__(self, clientID=0):
+    def __init__(self, port, clientID=0):
         #  Socket to talk to server
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.SUB)
         self.id = clientID
+        self.port = port
         threading.Thread.__init__(self)
-        # self.lock = threading.Lock()
 
     def run(self):
         print("[CLIENT %d]: Collecting updates from weather server…" %self.id)
-        self.socket.connect("tcp://localhost:5556")
+        self.socket.connect("tcp://localhost:%d" %(self.port) )
         # Subscribe to zipcode, default is NYC, 10001
-        self.zip_filter = sys.argv[1] if len(sys.argv) > 1 else "10001"
+        self.zip_filter = str(self.port)
 
         # Python 2 - ascii bytes to unicode str
         if isinstance(self.zip_filter, bytes):
@@ -35,17 +35,6 @@ class Client (threading.Thread):
         total_temp = 0
 
         for update_nbr in range(5):
-            # while True:
-            #     if self.lock.locked():
-            #         print("pass...")
-            #         pass
-            #     else:
-            #         print("Try to get lock")
-            #         self.lock.acquire()
-            #         print("got Lock")
-            #         string = self.socket.recv_string()
-                    # self.lock.release()
-                    # break
             string = self.socket.recv_string()
             print(("[CLIENT %d]: Got update " + string) % self.id)
             zipcode, temperature, relhumidity = string.split()
@@ -62,7 +51,7 @@ if __name__ == '__main__':
     numclients = 4
 
     for i in range(numclients):
-        thread = Client(i)
+        thread = Client(5556, i)
         threads.append(thread)
 
     # Start new Threads
