@@ -21,16 +21,18 @@ class Peer:
         self.server.shutdown()
 
 if __name__ == '__main__':
-    Peer(5556, 4)
+    #Peer(5556, 4)
     # Read cmd params
-    '''parser = argparse.ArgumentParser(description='Process some integers.')
-    parser.add_argument('integers', metavar='N', type=int, nargs='+',
-                        help='an integer for the accumulator')
-    parser.add_argument('--sum', dest='accumulate', action='store_const',
-                        const=sum, default=max,
-                        help='sum the integers (default: find the max)')
+    parser = argparse.ArgumentParser(description='Start a peer with one server and N clients on the given port.')
+    parser.add_argument('--N', type=int,
+                        help='the number of clients in the peer')
+    parser.add_argument('--port', type=int,
+                        help='the port for the server which the clients should connect to')
 
-    args = parser.parse_args()'''
+    args = parser.parse_args()
+
+    Peer(args.port, args.N)
+
     # Start the client
 
     # Kill the client...
