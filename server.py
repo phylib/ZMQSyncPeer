@@ -32,6 +32,6 @@ class Server (threading.Thread):
 
 
 
-if __name__ == '__main__':
+'''if __name__ == '__main__':
     server = Server(5556)
-    server.run()
+    server.run()'''

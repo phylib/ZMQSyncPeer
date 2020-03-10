@@ -10,7 +10,7 @@ class Peer:
         self.server = Server(port)
         self.server.start()  # Start publisher thread
         for i in range(n):
-            self.clients.append(Client(port, i))
+            self.clients.append(Client(port, others[i], i))
             self.clients[i].start()  # Start subscriber threads
 
 
@@ -36,10 +36,9 @@ if __name__ == '__main__':
     if(args.N != len(args.others.split(', '))):
         raise ValueError('Number of clients must be the same as the number of other IP-addresses!')
 
-    others = args.others
+    others = args.others.split(', ')
+    Peer(args.N, args.port, others)
 
-   # Peer(args.N, args.port, others)
-    print("OK!")
 
     # Start the client
 

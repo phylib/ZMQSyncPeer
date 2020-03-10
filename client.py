@@ -12,12 +12,14 @@ import zmq
 import threading
 
 class Client (threading.Thread):
-    def __init__(self, hostport, clientID=0):
+    def __init__(self, hostport, address, clientID=0):
         #  Socket to talk to server
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.SUB)
         self.id = clientID
         self.hostport = hostport
+        self.address = address
+        print("[CLIENT %d]: my address is %s" % (self.id, self.address))
         threading.Thread.__init__(self)
 
     def run(self):
@@ -44,7 +46,7 @@ class Client (threading.Thread):
             self.id, self.zip_filter, total_temp / (update_nbr + 1))
                 )
 
-if __name__ == '__main__':
+'''if __name__ == '__main__':
     # Create new threads
 
     threads = []
@@ -62,4 +64,4 @@ if __name__ == '__main__':
     for i in range(numclients):
         threads[i].join()
 
-    print("Exiting Main Thread")
+    print("Exiting Main Thread")'''
