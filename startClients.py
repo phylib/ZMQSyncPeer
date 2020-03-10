@@ -11,7 +11,7 @@ class clientThread (threading.Thread):
       self.weatherClient = client.Client(clientID)
 
    def run(self):
-      self.weatherClient.startObserving()
+      self.weatherClient.run()
 
 
 if __name__ == '__main__':
