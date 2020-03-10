@@ -27,11 +27,5 @@ class Server (threading.Thread):
             relhumidity = randrange(10, 60)
             updateString = str(zipcode) + " " + str(temperature) + " " + str(relhumidity)
             self.socket.send_string(updateString)
-            print("[localhost:%d]: sent update %s"  %(self.port, updateString))
+            print("[localhost:%d]: sent update %s" %(self.port, updateString))
             time.sleep(0.5)  # set to 0.5
-
-
-
-'''if __name__ == '__main__':
-    server = Server(5556)
-    server.run()'''

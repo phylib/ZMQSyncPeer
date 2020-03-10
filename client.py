@@ -6,8 +6,6 @@
 #   Collects weather updates and finds avg temp in zipcode
 #
 
-import sys
-import argparse
 import zmq
 import threading
 
@@ -23,7 +21,7 @@ class Client (threading.Thread):
     def run(self):
         print("[%s]: Collecting updates from weather server…" %(self.address))
         self.socket.connect("tcp://localhost:%d" %(self.hostport) )
-        # Subscribe to zipcode, default is NYC, 10001
+        # Subscribe to hostport
         self.zip_filter = str(self.hostport)
 
         # Python 2 - ascii bytes to unicode str
@@ -43,23 +41,3 @@ class Client (threading.Thread):
         print("[%s]: Average temperature for zipcode '%s' was %dF " % (
             self.address, self.zip_filter, total_temp / (update_nbr + 1))
                 )
-
-'''if __name__ == '__main__':
-    # Create new threads
-
-    threads = []
-    numclients = 4
-
-    for i in range(numclients):
-        thread = Client(5556, i)
-        threads.append(thread)
-
-    # Start new Threads
-    for i in range(numclients):
-        threads[i].start()
-
-    # Join Threads
-    for i in range(numclients):
-        threads[i].join()
-
-    print("Exiting Main Thread")'''
