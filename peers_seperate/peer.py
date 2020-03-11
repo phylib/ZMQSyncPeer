@@ -9,14 +9,22 @@ class Peer:
         # 1 publisher
         # n subscribers
         self.clients = []
-        self.server = Server(port)
-        self.addresses = others.split(', ')
+        self.server = Server(port, self)
+        self.addresses = others.split(',')
         for i in range(len(self.addresses)):
-            self.clients.append(Client(port, self.addresses[i]))
+            self.clients.append(Client(port, self.addresses[i].strip()))
 
         self.server.start()
         for i in range(len(self.clients)):
             self.clients[i].start()
+
+        self.server.join()
+        for i in range(len(self.clients)):
+            self.clients[i].join()
+
+    def shutdown(self):
+        for client in self.clients:
+            client.shutdown()
 
 if __name__ == "__main__":
     #Peer(4, 5556, ["localhost:5557", "localhost:5558", "localhost:5559"])
@@ -33,7 +41,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    if(args.N != len(args.others.split(', '))):
+    if(args.N != len(args.others.split(','))):
         raise ValueError('Number of clients must be the same as the number of other addresses!')
 
     #"localhost:5557, localhost:5558, localhost:5559"
