@@ -19,7 +19,7 @@ class Client (threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
-        print("[%s]: Collecting updates from weather server %d…" %(self.address, self.hostport))
+        print("[%s]: Collecting updates from weather server…" %(self.address))
         self.socket.connect("tcp://localhost:%d" %(self.hostport) )
         # Subscribe to hostport
         self.zip_filter = str(self.hostport)
