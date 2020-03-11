@@ -41,8 +41,3 @@ class Client (threading.Thread):
         print("[%s]: Average temperature for zipcode '%s' was %dF " % (
             self.address, self.zip_filter, total_temp / (update_nbr + 1))
                 )
-
-    def shutdown(self):
-        print(("[%s]: CLIENT shutting down ... ") % (self.address))
-        self.socket.close()
-        self.context.destroy()
