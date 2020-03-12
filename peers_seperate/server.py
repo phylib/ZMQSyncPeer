@@ -27,14 +27,14 @@ class Server (threading.Thread):
         line = logfile.readline()
 
         while count < 20:
-            self.socket.send_string(str(self.port) + " " +line)
-            print("[localhost:%d]: sent update %d %s" %(self.port, self.port, line))
             line = logfile.readline()
+            self.socket.send_string(line)
+            print("[localhost:%d]: sent update %s" %(self.port, line))
             count += 1
             time.sleep(0.5)  # set to 0.5
 
         logfile.close()
-
+        self.socket.send_string("EOF")
         if(self.peer != None):
             print("[localhost:%d]: SERVER shutting down ... " %(self.port))
             self.peer.shutdown()

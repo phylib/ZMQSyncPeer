@@ -22,7 +22,7 @@ class Client (threading.Thread):
         print("[%s]: Collecting updates from weather server…" %(self.address))
         self.socket.connect("tcp://localhost:%d" %(self.hostport) )
         # Subscribe to hostport
-        self.zip_filter = str(self.hostport)
+        self.zip_filter = ''
 
         # Python 2 - ascii bytes to unicode str
         if isinstance(self.zip_filter, bytes):
@@ -30,17 +30,13 @@ class Client (threading.Thread):
         self.socket.setsockopt_string(zmq.SUBSCRIBE, self.zip_filter)
 
         # Process 5 updates
-        total_temp = 0
 
-        for update_nbr in range(5):
+        while True:
             string = self.socket.recv_string()
+            if(string == "EOF"):
+                break
             print(("[%s]: Got update " + string) % (self.address))
-            zipcode, temperature, relhumidity = string.split()
-            total_temp += int(temperature)
 
-        print("[%s]: Average temperature for zipcode '%s' was %dF " % (
-            self.address, self.zip_filter, total_temp / (update_nbr + 1))
-                )
 
     def shutdown(self):
         print("[%s]: CLIENT shutting down ... "  % (self.address))
