@@ -40,3 +40,4 @@ class Client (threading.Thread):
 
     def shutdown(self):
         print("[%s]: CLIENT shutting down ... "  % (self.address))
+        self.socket.close()

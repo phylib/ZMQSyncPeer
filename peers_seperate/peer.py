@@ -5,14 +5,14 @@ import argparse
 
 class Peer:
 
-    def __init__(self, n, port, others):
+    def __init__(self, hostport, others):
         # 1 publisher
         # n subscribers
         self.clients = []
-        self.server = Server(port, self)
+        self.server = Server(hostport, self)
         self.addresses = others.split(', ')
         for i in range(len(self.addresses)):
-            self.clients.append(Client(port, self.addresses[i]))
+            self.clients.append(Client(hostport, self.addresses[i]))
 
         self.server.start()
         for i in range(len(self.clients)):
@@ -29,20 +29,15 @@ class Peer:
 if __name__ == "__main__":
     #Peer(4, 5556, ["localhost:5557", "localhost:5558", "localhost:5559"])
 
-    parser = argparse.ArgumentParser(description='Start a peer with one server and N clients.')
-    parser.add_argument('--N', type=int,
-                        help='the number of clients in a peer')
+    parser = argparse.ArgumentParser(description='Start a peer with one server and several clients.')
 
-    parser.add_argument('--port', type=int,
+    parser.add_argument('--serverPort', type=int,
                         help='the port number of the server')
 
-    parser.add_argument('--others', type=str,
+    parser.add_argument('--clients', type=str,
                         help='IP-address and port of the clients')
 
     args = parser.parse_args()
 
-    if(args.N != len(args.others.split(', '))):
-        raise ValueError('Number of clients must be the same as the number of other addresses!')
-
     #"localhost:5557, localhost:5558, localhost:5559"
-    Peer(args.N, args.port, args.others)
+    Peer(args.serverPort, args.clients)
