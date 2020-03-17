@@ -1,13 +1,11 @@
 #
-#   Weather update server
+#   Server: sends messages to clients
 #   Binds PUB socket to tcp://*:5556
-#   Publishes random weather updates
 #
 
 import zmq
 import threading
 import time
-
 
 class Server (threading.Thread):
 
@@ -23,14 +21,15 @@ class Server (threading.Thread):
     def run(self):
         count = 0
         logfile = open("ChunkChanges-very-distributed.csv", "r")
-        line = logfile.readline()
+         #read first line "away" --> no important data here!
+        logfile.readline()
 
         while count < 20:
             line = logfile.readline().strip('\n').split('\t')[1]
             self.socket.send_string(line)
             print("[localhost:%d]: sent update %s" %(self.port, line))
             count += 1
-            time.sleep(0.5)  # set to 0.5
+            time.sleep(0.5) # seconds
 
         logfile.close()
         self.socket.send_string("EOF")

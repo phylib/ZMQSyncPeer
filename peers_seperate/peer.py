@@ -1,3 +1,8 @@
+#
+#   Peer: consisting of 1 server & n clients
+#   calls server + clients as threads
+#   shuts clients down, when server wants to end the connection
+#
 
 from client import Client
 from server import Server
@@ -27,7 +32,6 @@ class Peer:
             client.shutdown()
 
 if __name__ == "__main__":
-    #Peer(4, 5556, ["localhost:5557", "localhost:5558", "localhost:5559"])
 
     parser = argparse.ArgumentParser(description='Start a peer with one server and several clients.')
 
@@ -39,6 +43,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    #"localhost:5557, localhost:5558, localhost:5559"
+    # --serverPort=5556
+    # --addresses="localhost:5557, localhost:5558, localhost:5559"
     Peer(args.serverPort, args.clients)
 
