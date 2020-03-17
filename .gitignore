@@ -1,2 +1,5 @@
 .idea
 venv
+ToDo
+*/__pycache__
+__pycache__

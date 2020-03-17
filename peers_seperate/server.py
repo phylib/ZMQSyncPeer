@@ -15,6 +15,7 @@ class Server (threading.Thread):
         self.port = port
         self.peer = peer
         self.socket.bind("tcp://*:%d" %(self.port))
+        self.versions = {}
         threading.Thread.__init__(self)
 
 
@@ -27,13 +28,33 @@ class Server (threading.Thread):
         while count < 20:
             line = logfile.readline().strip('\n').split('\t')[1]
             self.socket.send_string(line)
+
+            #split the line in different coordinates and update them in the
+            #versions-Dictionary
+            for coordinate in line.split(';'):
+                self.updateVersion(coordinate);
+
             print("[localhost:%d]: sent update %s" %(self.port, line))
             count += 1
             time.sleep(0.5) # seconds
 
         logfile.close()
+        #print final versions-Dictionary
+        self.printVersions()
         self.socket.send_string("EOF")
         if(self.peer != None):
             print("[localhost:%d]: SERVER shutting down ... " %(self.port))
             self.peer.shutdown()
             self.socket.close()
+
+    def updateVersion(self, key):
+        if(key in self.versions):
+            self.versions[key]+=1;
+        else:
+            self.versions[key]=1;
+
+    def printVersions(self):
+        print("\n### All coordinates and their final versions: ###")
+        for x, y in self.versions.items():
+            print(x + " : " + str(y));
+        print("\n")
