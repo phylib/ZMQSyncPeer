@@ -5,7 +5,6 @@
 #
 
 import zmq
-from random import randrange
 import threading
 import time
 

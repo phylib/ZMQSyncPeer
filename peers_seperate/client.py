@@ -19,7 +19,7 @@ class Client (threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
-        print("[%s]: Collecting updates from weather server…" %(self.address))
+        print("[%s]: collecting updates from weather server…" %(self.address))
         self.socket.connect("tcp://localhost:%d" %(self.hostport) )
         # Subscribe to hostport
         self.zip_filter = ''
@@ -29,13 +29,11 @@ class Client (threading.Thread):
             self.zip_filter = self.zip_filter.decode('ascii')
         self.socket.setsockopt_string(zmq.SUBSCRIBE, self.zip_filter)
 
-        # Process 5 updates
-
         while True:
             string = self.socket.recv_string()
             if(string == "EOF"):
                 break
-            print(("[%s]: Got update " + string) % (self.address))
+            print(("[%s]: got update " + string) % (self.address))
 
 
     def shutdown(self):
