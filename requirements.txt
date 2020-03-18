@@ -1,2 +1,5 @@
 pyzmq
 argparse
+protobuf
+protobuf-compiler
+grpcio-tools

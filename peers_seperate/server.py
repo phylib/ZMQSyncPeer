@@ -6,6 +6,7 @@
 import zmq
 import threading
 import time
+import protoGen.messages_pb2 as messages
 
 class Server (threading.Thread):
 
@@ -27,12 +28,20 @@ class Server (threading.Thread):
 
         while count < 20:
             line = logfile.readline().strip('\n').split('\t')[1]
+            # try to send message as protobufmessage
             self.socket.send_string(line)
 
             #split the line in different coordinates and update them in the
             #versions-Dictionary
-            for coordinate in line.split(';'):
+            '''for coordinate in line.split(';'):
                 self.updateVersion(coordinate);
+                #protobufmessage
+                message = messages.Chunk();
+                message.x = int(coordinate.split(',')[0])
+                message.y = int(coordinate.split(',')[1])
+                message.data = self.versions[coordinate];
+                self.socket.send(message)'''
+
 
             print("[localhost:%d]: sent update %s" %(self.port, line))
             count += 1
