@@ -10,7 +10,7 @@ import protoGen.chunkChanges_pb2
 
 class Server (threading.Thread):
 
-    def __init__(self, port, peer=None):
+    def __init__(self, port, leftUpperCorner, rightLowerCorner, peer=None):
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.PUB)
         self.port = port
@@ -18,8 +18,15 @@ class Server (threading.Thread):
         self.socket.bind("tcp://*:%d" %(self.port))
         self.versions = {}
         self.chunk = protoGen.chunkChanges_pb2.Chunk();
+        self.chunk.x = 0
+        self.chunk.y = 0
+        self.chunk.data = 0
         self.chunkChanges = protoGen.chunkChanges_pb2.ChunkChanges();
         self.chunkChanges.hashKnown = False;
+        self.leftUpperX = int(leftUpperCorner.split(',')[0])
+        self.leftUpperY = int(leftUpperCorner.split(',')[1])
+        self.rightLowerX = int(rightLowerCorner.split(',')[0])
+        self.rightLowerY = int(rightLowerCorner.split(',')[1])
         threading.Thread.__init__(self)
 
 
@@ -38,18 +45,25 @@ class Server (threading.Thread):
             #split the line in different coordinates and update them in the
             #versions-Dictionary
             for coordinate in line.split(';'):
-                self.updateVersion(coordinate);
+                x = int(coordinate.split(',')[0])
+                y = int(coordinate.split(',')[1])
 
-                #protobufmessage
-                self.chunk.x = int(coordinate.split(',')[0])
-                self.chunk.y = int(coordinate.split(',')[1])
-                self.chunk.data = self.versions[coordinate];
-                self.chunk.eof = False;
-                self.chunkChanges.chunks.extend([self.chunk])
+                if(x >= self.leftUpperX and x <= self.rightLowerX
+                and y <= self.leftUpperY and y>= self.rightLowerY):
+                    self.updateVersion(coordinate);
 
-            string = self.chunkChanges.SerializeToString()
-            self.printAllChunkChanges()
-            self.socket.send(string)
+                    #protobufmessage
+                    self.chunk.x = x
+                    self.chunk.y = y
+                    self.chunk.data = self.versions[coordinate];
+                    self.chunk.eof = False;
+                    self.chunkChanges.chunks.extend([self.chunk])
+
+            #if chunkChanges not empty
+            if(len(self.chunkChanges.chunks)>0):
+                string = self.chunkChanges.SerializeToString()
+                self.printAllChunkChanges()
+                self.socket.send(string)
 
             count += 1
             time.sleep(0.5) # seconds
@@ -79,7 +93,7 @@ class Server (threading.Thread):
     def printVersions(self):
         print("\n### All coordinates and their final versions: ###")
         for x, y in self.versions.items():
-            print(x + " : " + str(y));
+            print(x + ": " + str(y));
         print("\n")
 
     def printAllChunkChanges(self):
