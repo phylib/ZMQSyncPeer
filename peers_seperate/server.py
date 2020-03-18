@@ -32,6 +32,9 @@ class Server (threading.Thread):
         while count < 20:
             line = logfile.readline().strip('\n').split('\t')[1]
 
+            #reset this list before the changes of the next line are observed
+            del self.chunkChanges.chunks[:]
+
             #split the line in different coordinates and update them in the
             #versions-Dictionary
             for coordinate in line.split(';'):
@@ -42,15 +45,11 @@ class Server (threading.Thread):
                 self.chunk.y = int(coordinate.split(',')[1])
                 self.chunk.data = self.versions[coordinate];
                 self.chunk.eof = False;
-                string = self.chunk.SerializeToString()
+                self.chunkChanges.chunks.extend([self.chunk])
 
-                # for printing the decoded string (chunk)
-                print("[localhost:%d]: send update %d, %d" % (self.port, self.chunk.x, self.chunk.y))
-
-                # for printing the encoded chunk (string)
-                # print("[localhost:%d]: sent update %s" % (self.port, string))
-
-                self.socket.send(string)
+            string = self.chunkChanges.SerializeToString()
+            self.printAllChunkChanges()
+            self.socket.send(string)
 
             count += 1
             time.sleep(0.5) # seconds
@@ -61,7 +60,9 @@ class Server (threading.Thread):
         self.printVersions()
 
         self.chunk.eof = True;
-        string = self.chunk.SerializeToString()
+        del self.chunkChanges.chunks[:]
+        self.chunkChanges.chunks.extend([self.chunk])
+        string = self.chunkChanges.SerializeToString()
         self.socket.send(string)
 
         if(self.peer != None):
@@ -80,3 +81,9 @@ class Server (threading.Thread):
         for x, y in self.versions.items():
             print(x + " : " + str(y));
         print("\n")
+
+    def printAllChunkChanges(self):
+        string = ""
+        for chunk in self.chunkChanges.chunks:
+            string+= str(chunk.x) + "," + str(chunk.y) + ";"
+        print("[localhost:%d]: sent update %s" % (self.port, string))
