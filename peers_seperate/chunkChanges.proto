@@ -1,5 +1,9 @@
 syntax = "proto2";
 
+message ChunkChanges {
+    required bool hashKnown = 1;
+    repeated Chunk chunks = 2;
+}
 message Chunk {
     required int64 x = 1;
     required int64 y = 2;

@@ -5,7 +5,7 @@
 
 import zmq
 import threading
-import protoGen.messages_pb2 as messages
+import protoGen.chunkChanges_pb2
 
 class Client (threading.Thread):
     def __init__(self, hostport, address):
@@ -14,7 +14,9 @@ class Client (threading.Thread):
         self.socket = self.context.socket(zmq.SUB)
         self.hostport = hostport
         self.address = address
-        self.message = messages.Chunk();
+        self.chunk = protoGen.chunkChanges_pb2.Chunk();
+        self.chunkChanges = protoGen.chunkChanges_pb2.ChunkChanges();
+        self.chunkChanges.hashKnown = False;
         threading.Thread.__init__(self)
 
     def run(self):
@@ -30,14 +32,14 @@ class Client (threading.Thread):
 
         while True:
             string = self.socket.recv()
-            self.message.ParseFromString(string)
-            if(self.message.eof):
+            self.chunk.ParseFromString(string)
+            if(self.chunk.eof):
                 break
 
-            # for printing the decoded string (message)
-            print("[%s]: got update %d, %d" % (self.address, self.message.x, self.message.y))
+            # for printing the decoded string (chunk)
+            print("[%s]: got update %d, %d" % (self.address, self.chunk.x, self.chunk.y))
 
-            # for printing the encoded message (string)
+            # for printing the encoded chunk (string)
             # print("[%s]: got update %s" % (self.address, string))
 
 

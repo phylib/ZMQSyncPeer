@@ -6,7 +6,7 @@
 import zmq
 import threading
 import time
-import protoGen.messages_pb2 as messages
+import protoGen.chunkChanges_pb2
 
 class Server (threading.Thread):
 
@@ -17,7 +17,9 @@ class Server (threading.Thread):
         self.peer = peer
         self.socket.bind("tcp://*:%d" %(self.port))
         self.versions = {}
-        self.message = messages.Chunk();
+        self.chunk = protoGen.chunkChanges_pb2.Chunk();
+        self.chunkChanges = protoGen.chunkChanges_pb2.ChunkChanges();
+        self.chunkChanges.hashKnown = False;
         threading.Thread.__init__(self)
 
 
@@ -36,16 +38,16 @@ class Server (threading.Thread):
                 self.updateVersion(coordinate);
 
                 #protobufmessage
-                self.message.x = int(coordinate.split(',')[0])
-                self.message.y = int(coordinate.split(',')[1])
-                self.message.data = self.versions[coordinate];
-                self.message.eof = False;
-                string = self.message.SerializeToString()
+                self.chunk.x = int(coordinate.split(',')[0])
+                self.chunk.y = int(coordinate.split(',')[1])
+                self.chunk.data = self.versions[coordinate];
+                self.chunk.eof = False;
+                string = self.chunk.SerializeToString()
 
-                # for printing the decoded string (message)
-                print("[localhost:%d]: send update %d, %d" % (self.port, self.message.x, self.message.y))
+                # for printing the decoded string (chunk)
+                print("[localhost:%d]: send update %d, %d" % (self.port, self.chunk.x, self.chunk.y))
 
-                # for printing the encoded message (string)
+                # for printing the encoded chunk (string)
                 # print("[localhost:%d]: sent update %s" % (self.port, string))
 
                 self.socket.send(string)
@@ -58,8 +60,8 @@ class Server (threading.Thread):
         #print final versions-Dictionary
         self.printVersions()
 
-        self.message.eof = True;
-        string = self.message.SerializeToString()
+        self.chunk.eof = True;
+        string = self.chunk.SerializeToString()
         self.socket.send(string)
 
         if(self.peer != None):
