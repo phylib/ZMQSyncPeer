@@ -7,6 +7,7 @@ import zmq
 import threading
 import time
 import protoGen.chunkChanges_pb2
+from rectangle import Rectangle
 
 class Server (threading.Thread):
 
@@ -17,16 +18,11 @@ class Server (threading.Thread):
         self.peer = peer
         self.socket.bind("tcp://*:%d" %(self.port))
         self.versions = {}
+        self.rectangle = Rectangle(int(leftUpperCorner.split(',')[0]), int(leftUpperCorner.split(',')[1]),
+                                   int(rightLowerCorner.split(',')[0]), int(rightLowerCorner.split(',')[1]))
         self.chunk = protoGen.chunkChanges_pb2.Chunk();
-        self.chunk.x = 0
-        self.chunk.y = 0
-        self.chunk.data = 0
         self.chunkChanges = protoGen.chunkChanges_pb2.ChunkChanges();
         self.chunkChanges.hashKnown = False;
-        self.leftUpperX = int(leftUpperCorner.split(',')[0])
-        self.leftUpperY = int(leftUpperCorner.split(',')[1])
-        self.rightLowerX = int(rightLowerCorner.split(',')[0])
-        self.rightLowerY = int(rightLowerCorner.split(',')[1])
         threading.Thread.__init__(self)
 
 
@@ -48,16 +44,11 @@ class Server (threading.Thread):
                 x = int(coordinate.split(',')[0])
                 y = int(coordinate.split(',')[1])
 
-                if(x >= self.leftUpperX and x <= self.rightLowerX
-                and y <= self.leftUpperY and y>= self.rightLowerY):
+                if(self.rectangle.inRectangle(x, y)):
                     self.updateVersion(coordinate);
 
                     #protobufmessage
-                    self.chunk.x = x
-                    self.chunk.y = y
-                    self.chunk.data = self.versions[coordinate];
-                    self.chunk.eof = False;
-                    self.chunkChanges.chunks.extend([self.chunk])
+                    self.createChunk(x, y, self.versions[coordinate], False)
 
             #if chunkChanges not empty
             if(len(self.chunkChanges.chunks)>0):
@@ -72,10 +63,7 @@ class Server (threading.Thread):
 
         #print final versions-Dictionary
         self.printVersions()
-
-        self.chunk.eof = True;
-        del self.chunkChanges.chunks[:]
-        self.chunkChanges.chunks.extend([self.chunk])
+        self.createChunk(0, 0, 0, True)
         string = self.chunkChanges.SerializeToString()
         self.socket.send(string)
 
@@ -101,3 +89,14 @@ class Server (threading.Thread):
         for chunk in self.chunkChanges.chunks:
             string+= str(chunk.x) + "," + str(chunk.y) + ";"
         print("[localhost:%d]: sent update %s" % (self.port, string))
+
+    def createChunk(self, x, y, data, eof):
+        if(eof==True):
+            del self.chunkChanges.chunks[:]
+        else:
+            self.chunk.x = x
+            self.chunk.y = y
+            self.chunk.data = data
+        self.chunk.eof = eof
+        self.chunkChanges.chunks.extend([self.chunk])
+
