@@ -5,6 +5,7 @@
 
 import zmq
 import threading
+import protoGen.messages_pb2 as messages
 
 class Client (threading.Thread):
     def __init__(self, hostport, address):
@@ -13,6 +14,7 @@ class Client (threading.Thread):
         self.socket = self.context.socket(zmq.SUB)
         self.hostport = hostport
         self.address = address
+        self.message = messages.Chunk();
         threading.Thread.__init__(self)
 
     def run(self):
@@ -27,10 +29,16 @@ class Client (threading.Thread):
         self.socket.setsockopt_string(zmq.SUBSCRIBE, self.zip_filter)
 
         while True:
-            string = self.socket.recv_string()
-            if(string == "EOF"):
+            string = self.socket.recv()
+            self.message.ParseFromString(string)
+            if(self.message.eof):
                 break
-            print(("[%s]: got update " + string) % (self.address))
+
+            # for printing the decoded string (message)
+            print("[%s]: got update %d, %d" % (self.address, self.message.x, self.message.y))
+
+            # for printing the encoded message (string)
+            # print("[%s]: got update %s" % (self.address, string))
 
 
     def shutdown(self):

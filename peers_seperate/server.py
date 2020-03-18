@@ -17,6 +17,7 @@ class Server (threading.Thread):
         self.peer = peer
         self.socket.bind("tcp://*:%d" %(self.port))
         self.versions = {}
+        self.message = messages.Chunk();
         threading.Thread.__init__(self)
 
 
@@ -28,29 +29,39 @@ class Server (threading.Thread):
 
         while count < 20:
             line = logfile.readline().strip('\n').split('\t')[1]
-            # try to send message as protobufmessage
-            self.socket.send_string(line)
 
             #split the line in different coordinates and update them in the
             #versions-Dictionary
-            '''for coordinate in line.split(';'):
+            for coordinate in line.split(';'):
                 self.updateVersion(coordinate);
+
                 #protobufmessage
-                message = messages.Chunk();
-                message.x = int(coordinate.split(',')[0])
-                message.y = int(coordinate.split(',')[1])
-                message.data = self.versions[coordinate];
-                self.socket.send(message)'''
+                self.message.x = int(coordinate.split(',')[0])
+                self.message.y = int(coordinate.split(',')[1])
+                self.message.data = self.versions[coordinate];
+                self.message.eof = False;
+                string = self.message.SerializeToString()
 
+                # for printing the decoded string (message)
+                print("[localhost:%d]: send update %d, %d" % (self.port, self.message.x, self.message.y))
 
-            print("[localhost:%d]: sent update %s" %(self.port, line))
+                # for printing the encoded message (string)
+                # print("[localhost:%d]: sent update %s" % (self.port, string))
+
+                self.socket.send(string)
+
             count += 1
             time.sleep(0.5) # seconds
 
         logfile.close()
+
         #print final versions-Dictionary
         self.printVersions()
-        self.socket.send_string("EOF")
+
+        self.message.eof = True;
+        string = self.message.SerializeToString()
+        self.socket.send(string)
+
         if(self.peer != None):
             print("[localhost:%d]: SERVER shutting down ... " %(self.port))
             self.peer.shutdown()

@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='messages.proto',
   package='',
   syntax='proto2',
-  serialized_pb=_b('\n\x0emessages.proto\"+\n\x05\x43hunk\x12\t\n\x01x\x18\x01 \x02(\x03\x12\t\n\x01y\x18\x02 \x02(\x03\x12\x0c\n\x04\x64\x61ta\x18\x03 \x02(\x04')
+  serialized_pb=_b('\n\x0emessages.proto\"8\n\x05\x43hunk\x12\t\n\x01x\x18\x01 \x02(\x03\x12\t\n\x01y\x18\x02 \x02(\x03\x12\x0c\n\x04\x64\x61ta\x18\x03 \x02(\x04\x12\x0b\n\x03\x65of\x18\x04 \x02(\x08')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -54,6 +54,13 @@ _CHUNK = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='eof', full_name='Chunk.eof', index=3,
+      number=4, type=8, cpp_type=7, label=2,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -67,7 +74,7 @@ _CHUNK = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=18,
-  serialized_end=61,
+  serialized_end=74,
 )
 
 DESCRIPTOR.message_types_by_name['Chunk'] = _CHUNK
