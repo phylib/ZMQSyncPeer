@@ -10,11 +10,11 @@ import argparse
 
 class Peer:
 
-    def __init__(self, hostport, others, leftUpperCorner, rightLowerCorner):
+    def __init__(self, hostport, others, coordinates):
         # 1 publisher
         # n subscribers
         self.clients = []
-        self.server = Server(hostport, leftUpperCorner, rightLowerCorner, self)
+        self.server = Server(hostport, coordinates, self)
         self.addresses = others.split(', ')
         for i in range(len(self.addresses)):
             self.clients.append(Client(hostport, self.addresses[i]))
@@ -41,15 +41,13 @@ if __name__ == "__main__":
     parser.add_argument('--clients', type=str,
                         help='IP-address and port of the clients')
 
-    parser.add_argument('--leftUpperCorner', type=str,
+    parser.add_argument('--coordinates', type=str,
                         help='the left upper corner coordinates for the rectangle which the server should observe')
 
-    parser.add_argument('--rightLowerCorner', type=str,
-                        help='the right lower corner coordinates for the rectangle which the server should observe')
 
     args = parser.parse_args()
 
     # --serverPort=5556
     # --addresses="localhost:5557, localhost:5558, localhost:5559"
-    Peer(args.serverPort, args.clients, args.leftUpperCorner, args.rightLowerCorner)
+    Peer(args.serverPort, args.clients, args.coordinates)
 

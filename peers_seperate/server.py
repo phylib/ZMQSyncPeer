@@ -11,15 +11,15 @@ from rectangle import Rectangle
 
 class Server (threading.Thread):
 
-    def __init__(self, port, leftUpperCorner, rightLowerCorner, peer=None):
+    def __init__(self, port, coordinates, peer=None):
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.PUB)
         self.port = port
         self.peer = peer
         self.socket.bind("tcp://*:%d" %(self.port))
         self.versions = {}
-        self.rectangle = Rectangle(int(leftUpperCorner.split(',')[0]), int(leftUpperCorner.split(',')[1]),
-                                   int(rightLowerCorner.split(',')[0]), int(rightLowerCorner.split(',')[1]))
+        self.rectangle = Rectangle(int(coordinates.split(',')[0]), int(coordinates.split(',')[1]),
+                                   int(coordinates.split(',')[2]), int(coordinates.split(',')[3]))
         self.chunk = protoGen.chunkChanges_pb2.Chunk();
         self.chunkChanges = protoGen.chunkChanges_pb2.ChunkChanges();
         self.chunkChanges.hashKnown = False;
