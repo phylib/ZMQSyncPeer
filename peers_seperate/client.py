@@ -36,6 +36,7 @@ class Client (threading.Thread):
                 break;
 
             self.printAllChunkChanges()
+            #print("[%s]: got update %s" % (self.address, string))
 
 
     def shutdown(self):

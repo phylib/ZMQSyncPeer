@@ -40,20 +40,13 @@ class Server (threading.Thread):
 
             #split the line in different coordinates and update them in the
             #versions-Dictionary
-            for coordinate in line.split(';'):
-                x = int(coordinate.split(',')[0])
-                y = int(coordinate.split(',')[1])
-
-                if(self.rectangle.inRectangle(x, y)):
-                    self.updateVersion(coordinate);
-
-                    #protobufmessage
-                    self.createChunk(x, y, self.versions[coordinate], False)
+            self.checkSingleCoordinates(line)
 
             #if chunkChanges not empty
             if(len(self.chunkChanges.chunks)>0):
                 string = self.chunkChanges.SerializeToString()
                 self.printAllChunkChanges()
+                #print("[localhost:%d]: sent update %s" % (self.port, string))
                 self.socket.send(string)
 
             count += 1
@@ -71,6 +64,17 @@ class Server (threading.Thread):
             print("[localhost:%d]: SERVER shutting down ... " %(self.port))
             self.peer.shutdown()
             self.socket.close()
+
+    def checkSingleCoordinates(self, line):
+        for coordinate in line.split(';'):
+            x = int(coordinate.split(',')[0])
+            y = int(coordinate.split(',')[1])
+
+            if (self.rectangle.inRectangle(x, y)):
+                self.updateVersion(coordinate);
+
+                # protobufmessage
+                self.createChunk(x, y, self.versions[coordinate], False)
 
     def updateVersion(self, key):
         if(key in self.versions):

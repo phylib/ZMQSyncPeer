@@ -42,10 +42,10 @@ if __name__ == "__main__":
                         help='IP-address and port of the clients')
 
     parser.add_argument('--leftUpperCorner', type=str,
-                        help='the left upper corner coordinates for the square which the server should observe')
+                        help='the left upper corner coordinates for the rectangle which the server should observe')
 
     parser.add_argument('--rightLowerCorner', type=str,
-                        help='the right lower corner coordinates for the square which the server should observe')
+                        help='the right lower corner coordinates for the rectangle which the server should observe')
 
     args = parser.parse_args()
 
