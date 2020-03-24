@@ -7,6 +7,7 @@ import zmq
 import threading
 import time
 import gzip
+import math
 import protoGen.chunkChanges_pb2
 from rectangle import Rectangle
 
@@ -28,13 +29,19 @@ class Server (threading.Thread):
 
 
     def run(self):
+        # we don't need the very first line at index 0
         count = 0
         logfile = open("ChunkChanges-very-distributed.csv", "r")
-         #read first line "away" --> no important data here!
-        logfile.readline()
+        allLines = logfile.readlines()
+        allLines.remove(allLines[0])
+        logfile.close()
+
+        # get maxX, minX, maxY, minY
+        area = self.getMaximumsAndMinimums(allLines)
+        print("\nAREA: maxX: %d, minX: %d, maxY: %d, minY: %d\n" %(area.rightLowerX, area.leftUpperX, area.leftUpperY, area.rightLowerY))
 
         while count < 20:
-            line = logfile.readline().strip('\n').split('\t')[1]
+            line = allLines[count].strip('\n').split('\t')[1]
 
             #reset this list before the changes of the next line are observed
             del self.chunkChanges.chunks[:]
@@ -55,8 +62,6 @@ class Server (threading.Thread):
 
             count += 1
             time.sleep(0.5) # seconds
-
-        logfile.close()
 
         #print final versions-Dictionary
         self.printVersions()
@@ -113,3 +118,24 @@ class Server (threading.Thread):
         if(self.peer!=None):
             for chunk in chunks:
                 self.peer.logger.logChunkUpdateProduced(chunk, timestamp)
+
+    def getMaximumsAndMinimums(self, lines):
+        maxX = -math.inf
+        maxY = -math.inf
+        minX = math.inf
+        minY = math.inf
+
+        for line in lines:
+            line = line.strip('\n').split('\t')[1]
+            for coordinates in line.split(";"):
+                x = int(coordinates.split(',')[0])
+                y = int(coordinates.split(',')[1])
+                if(x > maxX):
+                    maxX = x
+                if(x < minX):
+                    minX = x
+                if(y > maxY):
+                    maxY = y
+                if(y < minY):
+                    minY = y
+        return Rectangle(minX, maxY, maxY, minY)
