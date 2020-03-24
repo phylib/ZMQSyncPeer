@@ -6,6 +6,7 @@
 import zmq
 import threading
 import time
+import gzip
 import protoGen.chunkChanges_pb2
 
 class Client (threading.Thread):
@@ -33,6 +34,7 @@ class Client (threading.Thread):
 
         while True:
             string = self.socket.recv()
+            string = gzip.decompress(string)
             self.chunkChanges.ParseFromString(string);
             if(len(self.chunkChanges.chunks)==1 and self.chunkChanges.chunks[0].eof == True):
                 break;

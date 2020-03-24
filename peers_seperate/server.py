@@ -6,6 +6,7 @@
 import zmq
 import threading
 import time
+import gzip
 import protoGen.chunkChanges_pb2
 from rectangle import Rectangle
 
@@ -45,6 +46,7 @@ class Server (threading.Thread):
             #if chunkChanges not empty
             if(len(self.chunkChanges.chunks)>0):
                 string = self.chunkChanges.SerializeToString()
+                string = gzip.compress(string, 1);
                 self.printAllChunkChanges()
                 #print("[localhost:%d]: sent update %s" % (self.port, string))
                 self.socket.send(string)
@@ -60,6 +62,7 @@ class Server (threading.Thread):
         self.printVersions()
         self.createChunk(0, 0, 0, True)
         string = self.chunkChanges.SerializeToString()
+        string = gzip.compress(string, 1)
         self.socket.send(string)
 
         if(self.peer != None):
