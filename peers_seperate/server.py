@@ -1,8 +1,3 @@
-#
-#   Server: sends messages to clients
-#   Binds PUB socket to tcp://*:5556
-#
-
 import zmq
 import threading
 import time
@@ -12,8 +7,25 @@ import protoGen.chunkChanges_pb2
 from rectangle import Rectangle
 
 class Server (threading.Thread):
+    """
+       The Server class publishes updates to its clients.
+
+       The server is assigned a certain area which it has to
+       observe. If an update occurs in its area the server
+       has to broadcast this update to its clients. The server
+       is part of a peer and therefore realized as a thread.
+    """
 
     def __init__(self, port, coordinates, peer=None):
+        """
+           Initializes the server.
+           :param port: specifies the port number on which the server broadcasts its updates
+           :type port: int
+           :param coordinates: defines the rectangle to observe in the form x1,y1,x2,y2
+           :type coordinates: string
+           :param peer: defines the peer of which the server is part of
+           :type peer: Peer (if defined), default is None
+        """
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.PUB)
         self.port = port
@@ -29,7 +41,17 @@ class Server (threading.Thread):
 
 
     def run(self):
-        # we don't need the very first line at index 0
+        """
+           Starts the observing process of the servers assigned area.
+
+           At first the server needs to read all lines out of
+           "ChunkChanges-very-distributed.csv", which documents all the changes that happened.
+           Because this file also contains negative coordinates a shift of
+           all coordinates needs to be done. If the shifted coordinates are
+           in the servers assigned area then the server publishes an update.
+           The message format for the updates are defined in chunkChanges.proto.
+           These messages are serialized to strings and compressed with gzip before they are sent.
+        """
         count = 0
         logfile = open("ChunkChanges-very-distributed.csv", "r")
         allLines = logfile.readlines()
@@ -76,6 +98,16 @@ class Server (threading.Thread):
             self.socket.close()
 
     def checkSingleCoordinates(self, line, area):
+        """
+        Shift the coordinates so that all of them are
+        non-negative. Then check if they are inside the
+        rectangle the server has to observe. Keep track
+        of the version of the relevant coordinates.
+        :param line: contains the coordinates of all changes at a certain point in time
+        :type line: string
+        :param area: the whole area where the changes are happening
+        :type area: Rectangle
+        """
         # get the shifting distance for x and y
         treeSize = 65536
         width = area.maxX - area.minX
@@ -98,24 +130,54 @@ class Server (threading.Thread):
                 self.createChunk(x, y, self.versions[coordinate], False)
 
     def updateVersion(self, key):
+        """
+        If the changed coordinate is already
+        in our version-dictionary, then update its version.
+        Else add it to the dictionary with version 1.
+        :param key: the coordinates of a certain change
+        :type key: string
+        """
         if(key in self.versions):
             self.versions[key]+=1;
         else:
             self.versions[key]=1;
 
     def printVersions(self):
+        """
+        Prints all coordinates and their final
+        version after the server is finished with
+        observing the changes inside its area.
+        """
         print("\n### All coordinates and their final versions: ###")
         for x, y in self.versions.items():
             print(x + ": " + str(y));
         print("\n")
 
     def printAllChunkChanges(self):
+        """
+        Print the changes of all relevant coordinates
+        which happened at a certain point of time.
+        """
         string = ""
         for chunk in self.chunkChanges.chunks:
             string+= str(chunk.x) + "," + str(chunk.y) + ";"
         print("[localhost:%d]: sent update %s" % (self.port, string))
 
     def createChunk(self, x, y, data, eof):
+        """
+        Create a chunk with the given parameters
+        and put the chunk in the list of chunkChanges.
+        All chunks in this list represent changes that happened
+        at the same point of time.
+        :param x: the x coordinate
+        :type x: int
+        :param y: the y coordinate
+        :type y: int
+        :param data: the version of this chunk
+        :type data: int
+        :param eof: represents if this is the last message or not
+        :type eof: boolean
+        """
         if(eof==True):
             del self.chunkChanges.chunks[:]
 
@@ -126,11 +188,24 @@ class Server (threading.Thread):
         self.chunkChanges.chunks.extend([self.chunk])
 
     def logChunkChanges(self, chunks, timestamp):
+        """
+        Write all the sent updates in a logfile.
+        :param chunks: the list of changed chunks
+        :type chunks: list of Chunk-objects
+        :param timestamp: the point of time where the update happened
+        :type time
+        """
         if(self.peer!=None):
             for chunk in chunks:
                 self.peer.logger.logChunkUpdateProduced(chunk, timestamp)
 
     def getMaximumsAndMinimums(self, lines):
+        """
+        Get the maximum and minimum coordinates
+        of the area where all changes are happening.
+        :param lines: all lines of the file where we read the changes from
+        :type lines: list of strings
+        """
         maxX = -math.inf
         maxY = -math.inf
         minX = math.inf
