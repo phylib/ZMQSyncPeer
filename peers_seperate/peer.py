@@ -7,7 +7,6 @@
 from client import Client
 from server import Server
 from logging.logger import Logger
-
 import argparse
 
 class Peer:
@@ -55,5 +54,10 @@ if __name__ == "__main__":
 
     # --serverPort=5556
     # --addresses="localhost:5557, localhost:5558, localhost:5559"
+    #log the params in file
+    paramsLog = open("paramsLog.txt", "w");
+    paramsLog.write("--serverPort=%d\n--clients=%s\n--coordinates=%s\n--logDir=%s"
+                    %(args.serverPort, args.clients, args.coordinates, args.logDir));
+    paramsLog.close()
     Peer(args.serverPort, args.clients, args.coordinates, args.logDir)
 

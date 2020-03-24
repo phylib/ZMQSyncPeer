@@ -1,0 +1,4 @@
+--serverPort=5556
+--clients=localhost:5557, localhost:5558, localhost:5559
+--coordinates=-3125,3125,3125,-3125
+--logDir=logging
