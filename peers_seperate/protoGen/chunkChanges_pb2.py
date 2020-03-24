@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='chunkChanges.proto',
   package='',
   syntax='proto2',
-  serialized_pb=_b('\n\x12\x63hunkChanges.proto\"9\n\x0c\x43hunkChanges\x12\x11\n\thashKnown\x18\x01 \x02(\x08\x12\x16\n\x06\x63hunks\x18\x02 \x03(\x0b\x32\x06.Chunk\"8\n\x05\x43hunk\x12\t\n\x01x\x18\x01 \x02(\x03\x12\t\n\x01y\x18\x02 \x02(\x03\x12\x0c\n\x04\x64\x61ta\x18\x03 \x02(\x04\x12\x0b\n\x03\x65of\x18\x04 \x02(\x08')
+  serialized_pb=_b('\n\x12\x63hunkChanges.proto\"9\n\x0c\x43hunkChanges\x12\x11\n\thashKnown\x18\x01 \x02(\x08\x12\x16\n\x06\x63hunks\x18\x02 \x03(\x0b\x32\x06.Chunk\"8\n\x05\x43hunk\x12\t\n\x01x\x18\x01 \x02(\x04\x12\t\n\x01y\x18\x02 \x02(\x04\x12\x0c\n\x04\x64\x61ta\x18\x03 \x02(\x04\x12\x0b\n\x03\x65of\x18\x04 \x02(\x08')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -73,14 +73,14 @@ _CHUNK = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='x', full_name='Chunk.x', index=0,
-      number=1, type=3, cpp_type=2, label=2,
+      number=1, type=4, cpp_type=4, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
       name='y', full_name='Chunk.y', index=1,
-      number=2, type=3, cpp_type=2, label=2,
+      number=2, type=4, cpp_type=4, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,

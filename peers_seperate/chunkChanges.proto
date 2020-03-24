@@ -5,8 +5,8 @@ message ChunkChanges {
     repeated Chunk chunks = 2;
 }
 message Chunk {
-    required int64 x = 1;
-    required int64 y = 2;
+    required uint64 x = 1;
+    required uint64 y = 2;
     required uint64 data = 3;
     required bool eof = 4;
 }

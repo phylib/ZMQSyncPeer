@@ -1,12 +1,12 @@
 class Rectangle:
-    def __init__(self, leftUpperX, leftUpperY, rightLowerX, rightLowerY):
-        self.leftUpperX = leftUpperX
-        self.leftUpperY = leftUpperY
-        self.rightLowerX = rightLowerX
-        self.rightLowerY = rightLowerY
+    def __init__(self, minX, maxY, maxX, minY):
+        self.minX = minX
+        self.maxY = maxY
+        self.maxX = maxX
+        self.minY = minY
 
     def inRectangle(self, x, y):
-        if(self.leftUpperX <=  x <= self.rightLowerX and self.rightLowerY <= y <= self.leftUpperY):
+        if(self.minX <=  x <= self.maxX and self.minY <= y <= self.maxY):
             return True
         else:
             return False

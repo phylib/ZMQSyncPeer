@@ -38,7 +38,7 @@ class Server (threading.Thread):
 
         # get maxX, minX, maxY, minY
         area = self.getMaximumsAndMinimums(allLines)
-        print("\nAREA: maxX: %d, minX: %d, maxY: %d, minY: %d\n" %(area.rightLowerX, area.leftUpperX, area.leftUpperY, area.rightLowerY))
+        print("\nAREA: maxX: %d, minX: %d, maxY: %d, minY: %d\n" %(area.maxX, area.minX, area.maxY, area.minY))
 
         while count < 20:
             line = allLines[count].strip('\n').split('\t')[1]
@@ -48,7 +48,7 @@ class Server (threading.Thread):
 
             #split the line in different coordinates and update them in the
             #versions-Dictionary
-            self.checkSingleCoordinates(line)
+            self.checkSingleCoordinates(line, area)
 
             #if chunkChanges not empty
             if(len(self.chunkChanges.chunks)>0):
@@ -75,11 +75,22 @@ class Server (threading.Thread):
             self.peer.shutdown()
             self.socket.close()
 
-    def checkSingleCoordinates(self, line):
-        for coordinate in line.split(';'):
-            x = int(coordinate.split(',')[0])
-            y = int(coordinate.split(',')[1])
+    def checkSingleCoordinates(self, line, area):
+        # get the shifting distance for x and y
+        treeSize = 65536
+        width = area.maxX - area.minX
+        height = area.maxY - area.minY
+        xCenter = area.minX + (width / 2)
+        yCenter = area.minY + (height / 2)
+        xShift = int((treeSize / 2) - xCenter)
+        yShift = int((treeSize / 2) - yCenter)
 
+        for coordinate in line.split(';'):
+            x = int(coordinate.split(',')[0]) + xShift
+            y = int(coordinate.split(',')[1]) + yShift
+            coordinate = str("%d,%d" %(x,y))
+
+            # shift x and y so that all coordinates are positive
             if (self.rectangle.inRectangle(x, y)):
                 self.updateVersion(coordinate);
 
@@ -107,10 +118,10 @@ class Server (threading.Thread):
     def createChunk(self, x, y, data, eof):
         if(eof==True):
             del self.chunkChanges.chunks[:]
-        else:
-            self.chunk.x = x
-            self.chunk.y = y
-            self.chunk.data = data
+
+        self.chunk.x = x
+        self.chunk.y = y
+        self.chunk.data = data
         self.chunk.eof = eof
         self.chunkChanges.chunks.extend([self.chunk])
 
