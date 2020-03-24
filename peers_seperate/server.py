@@ -48,6 +48,8 @@ class Server (threading.Thread):
                 self.printAllChunkChanges()
                 #print("[localhost:%d]: sent update %s" % (self.port, string))
                 self.socket.send(string)
+                #log the chunkChange
+                self.logChunkChanges(self.chunkChanges.chunks, time.time())
 
             count += 1
             time.sleep(0.5) # seconds
@@ -104,3 +106,6 @@ class Server (threading.Thread):
         self.chunk.eof = eof
         self.chunkChanges.chunks.extend([self.chunk])
 
+    def logChunkChanges(self, chunks, timestamp):
+        for chunk in chunks:
+            self.peer.logger.logChunkUpdateProduced(chunk, timestamp)

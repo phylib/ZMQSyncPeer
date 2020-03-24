@@ -33,7 +33,7 @@ class Peer:
     def shutdown(self):
         for client in self.clients:
             client.shutdown()
-        self.logger.initFile()
+        self.logger.closeFile()
 
 if __name__ == "__main__":
 
