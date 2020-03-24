@@ -20,7 +20,7 @@ class Peer:
         self.server = Server(hostport, coordinates, self)
         self.addresses = others.split(', ')
         for i in range(len(self.addresses)):
-            self.clients.append(Client(hostport, self.addresses[i]))
+            self.clients.append(Client(hostport, self.addresses[i], self))
 
         self.server.start()
         for i in range(len(self.clients)):

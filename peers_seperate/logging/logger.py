@@ -13,5 +13,8 @@ class Logger:
     def logChunkUpdateProduced(self, chunk, timestamp):
         self.logFile.write("%s\tOUT\t%d\t%d\t%d\n" %(timestamp, chunk.x, chunk.y, chunk.data))
 
+    def logChunkUpdateReceived(self, chunk, timestamp):
+        self.logFile.write("%s\tIN\t%d\t%d\t%d\n" %(timestamp, chunk.x, chunk.y, chunk.data))
+
     def closeFile(self):
         self.logFile.close()

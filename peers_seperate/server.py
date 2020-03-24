@@ -107,5 +107,6 @@ class Server (threading.Thread):
         self.chunkChanges.chunks.extend([self.chunk])
 
     def logChunkChanges(self, chunks, timestamp):
-        for chunk in chunks:
-            self.peer.logger.logChunkUpdateProduced(chunk, timestamp)
+        if(self.peer!=None):
+            for chunk in chunks:
+                self.peer.logger.logChunkUpdateProduced(chunk, timestamp)
