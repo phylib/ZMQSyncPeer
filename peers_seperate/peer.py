@@ -12,12 +12,12 @@ import argparse
 
 class Peer:
 
-    def __init__(self, hostport, others, coordinates, tracefile, logDir):
+    def __init__(self, hostport, others, coordinates, tracefile, logDir, testing):
         # 1 publisher
         # n subscribers
         self.logger = Logger(logDir);
         self.clients = []
-        self.server = Server(hostport, coordinates, tracefile, self)
+        self.server = Server(hostport, coordinates, tracefile, testing, self)
         self.addresses = others.split(',')
         for i in range(len(self.addresses)):
             self.clients.append(Client(hostport, self.addresses[i].strip(), self))
@@ -55,6 +55,9 @@ if __name__ == "__main__":
     parser.add_argument('--logDir', type=str,
                         help='the directory in which the logfile should be saved')
 
+    parser.add_argument('--testing', action='store_true',
+                        help="if this argument is specified the server will only read 20 lines of its tracefile, else it will read the whole file")
+
     args = parser.parse_args()
 
     # --serverPort=5556
@@ -68,5 +71,5 @@ if __name__ == "__main__":
         paramsLog.write("--serverPort=%d\n--clients=%s\n--coordinates=%s\n--logDir=%s"
                     %(args.serverPort, args.clients, args.coordinates, args.logDir));
         paramsLog.close()
-        Peer(args.serverPort, args.clients, args.coordinates, args.tracefile, args.logDir)
+        Peer(args.serverPort, args.clients, args.coordinates, args.tracefile, args.logDir, args.testing)
 

@@ -16,7 +16,7 @@ class Server (threading.Thread):
        is part of a peer and therefore realized as a thread.
     """
 
-    def __init__(self, port, coordinates, tracefile, peer=None):
+    def __init__(self, port, coordinates, tracefile, testing, peer=None):
         """
            Initializes the server.
            :param port: specifies the port number on which the server broadcasts its updates
@@ -31,6 +31,7 @@ class Server (threading.Thread):
         self.port = port
         self.peer = peer
         self.tracefile = tracefile
+        self.testing = testing
         self.socket.bind("tcp://*:%d" %(self.port))
         self.versions = {}
         self.rectangle = Rectangle(int(coordinates.split(',')[0]), int(coordinates.split(',')[1]),
@@ -64,6 +65,8 @@ class Server (threading.Thread):
         print("\nAREA: maxX: %d, minX: %d, maxY: %d, minY: %d\n" %(area.maxX, area.minX, area.maxY, area.minY))
 
         shiftingDistances = self.getShiftingDistances(area)
+
+        allLines.extend(["EOF"])
 
         while count < 20:
             line = allLines[count].strip('\n').split('\t')[1]
@@ -99,6 +102,8 @@ class Server (threading.Thread):
             print("[localhost:%d]: SERVER shutting down ... " %(self.port))
             self.peer.shutdown()
             self.socket.close()
+            print("LAST LINE: %s" %allLines[len(allLines)-1])
+
 
     def checkSingleCoordinates(self, line, xShift, yShift):
         """
