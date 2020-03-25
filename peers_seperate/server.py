@@ -89,7 +89,7 @@ class Server (threading.Thread):
                 #print("[localhost:%d]: sent update %s" % (self.port, string))
                 self.socket.send(string)
                 #log the chunkChange
-                self.logChunkChanges(self.chunkChanges.chunks, time.time())
+                self.logChunkChanges(self.chunkChanges.chunks, time.time(), len(self.chunkChanges.chunks))
 
             count += 1
             time.sleep(0.5) # seconds
@@ -192,7 +192,7 @@ class Server (threading.Thread):
         self.chunk.eof = eof
         self.chunkChanges.chunks.extend([self.chunk])
 
-    def logChunkChanges(self, chunks, timestamp):
+    def logChunkChanges(self, chunks, timestamp, numChanges):
         """
         Write all the sent updates in a logfile.
         :param chunks: the list of changed chunks
@@ -202,7 +202,7 @@ class Server (threading.Thread):
         """
         if(self.peer!=None):
             for chunk in chunks:
-                self.peer.logger.logChunkUpdateProduced(chunk, timestamp)
+                self.peer.logger.logChunkUpdateProduced(chunk, timestamp, numChanges)
 
     def getMaximumsAndMinimums(self, lines):
         """

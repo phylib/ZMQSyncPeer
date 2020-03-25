@@ -8,14 +8,14 @@ class Logger:
         self.logFile = open(logDir+"/changeLog.txt", "w");
         self.lock = threading.Lock();
 
-    def logChunkUpdateProduced(self, chunk, timestamp):
+    def logChunkUpdateProduced(self, chunk, timestamp, numChanges):
         self.lock.acquire()
-        self.logFile.write("%s\tOUT\t%d\t%d\t%d\n" %(timestamp, chunk.x, chunk.y, chunk.data))
+        self.logFile.write("%s\tOUT\t%d\t%d\t%d\t%d\n" %(timestamp, chunk.x, chunk.y, chunk.data, numChanges))
         self.lock.release()
 
     def logChunkUpdateReceived(self, chunk, timestamp):
         self.lock.acquire()
-        self.logFile.write("%s\tIN\t%d\t%d\t%d\n" %(timestamp, chunk.x, chunk.y, chunk.data))
+        self.logFile.write("%s\tIN\t%d\t%d\t%d\t\n" %(timestamp, chunk.x, chunk.y, chunk.data))
         self.lock.release()
 
     def closeFile(self):
