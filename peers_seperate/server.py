@@ -77,6 +77,7 @@ class Server (threading.Thread):
             if (self.testing and count == 20):
                 break
             line = line.strip('\n').split('\t')[1]
+
             #reset this list before the changes of the next line are observed
             del self.chunkChanges.chunks[:]
 
@@ -91,15 +92,14 @@ class Server (threading.Thread):
                 self.printAllChunkChanges()
                 #print("[localhost:%d]: sent update %s" % (self.port, string))
                 self.socket.send(string)
-                #log the chunkChange
                 self.logChunkChanges(self.chunkChanges.chunks, time.time(), len(self.chunkChanges.chunks))
 
             count += 1
-            time.sleep(0.5) # seconds
+            time.sleep(0.5)
 
             line = allLines[count]
 
-        #print final versions-Dictionary
+        # prepare for shutdown
         self.printVersions()
         self.createChunk(0, 0, 0, True)
         string = self.chunkChanges.SerializeToString()
@@ -126,15 +126,16 @@ class Server (threading.Thread):
         :type yShift: int
         """
         for coordinate in line.split(';'):
+
+            # shift x and y so that all coordinates are positive
             x = int(coordinate.split(',')[0]) + xShift
             y = int(coordinate.split(',')[1]) + yShift
             coordinate = str("%d,%d" %(x,y))
 
-            # shift x and y so that all coordinates are positive
             if (self.rectangle.inRectangle(x, y)):
                 self.updateVersion(coordinate);
 
-                # protobufmessage
+                # send protobuf-message
                 self.createChunk(x, y, self.versions[coordinate], False)
 
     def updateVersion(self, key):
@@ -200,7 +201,7 @@ class Server (threading.Thread):
         Write the sent update in a logfile.
         :param chunks: the list of changed chunks
         :type chunks: list of Chunk-objects
-        :param timestamp: the point of time at which the update happened
+        :param timestamp: the point of time at which the server sent the update
         :type timestamp: time
         :param numChanges: the number of changed relevant chunks per line of the tracefile
         :type: int

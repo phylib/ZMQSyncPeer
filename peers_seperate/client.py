@@ -45,12 +45,10 @@ class Client (threading.Thread):
         """
         print("[%s]: connecting to server …" %(self.address))
         self.socket.connect("tcp://localhost:%d" %(self.hostport) )
-        # Subscribe to hostport
         self.zip_filter = ''
-
-        # Python 2 - ascii bytes to unicode str
         if isinstance(self.zip_filter, bytes):
             self.zip_filter = self.zip_filter.decode('ascii')
+        # Subscribe to hostport
         self.socket.setsockopt_string(zmq.SUBSCRIBE, self.zip_filter)
 
         while True:
