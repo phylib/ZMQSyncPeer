@@ -1,8 +1,11 @@
 import threading
+import os
 class Logger:
     def __init__(self, logDir):
         self.logDir = logDir
-        self.logFile = open(logDir+"\\changeLog.txt", "w");
+        if(not(os.path.exists(self.logDir))):
+            os.makedirs(self.logDir)
+        self.logFile = open(logDir+"/changeLog.txt", "w");
         self.lock = threading.Lock();
 
     def logChunkUpdateProduced(self, chunk, timestamp):
