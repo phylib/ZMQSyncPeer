@@ -16,7 +16,7 @@ class Server (threading.Thread):
        is part of a peer and therefore realized as a thread.
     """
 
-    def __init__(self, port, coordinates, peer=None):
+    def __init__(self, port, coordinates, tracefile, peer=None):
         """
            Initializes the server.
            :param port: specifies the port number on which the server broadcasts its updates
@@ -30,6 +30,7 @@ class Server (threading.Thread):
         self.socket = self.context.socket(zmq.PUB)
         self.port = port
         self.peer = peer
+        self.tracefile = tracefile
         self.socket.bind("tcp://*:%d" %(self.port))
         self.versions = {}
         self.rectangle = Rectangle(int(coordinates.split(',')[0]), int(coordinates.split(',')[1]),
@@ -53,10 +54,10 @@ class Server (threading.Thread):
            These messages are serialized to strings and compressed with gzip before they are sent.
         """
         count = 0
-        logfile = open("ChunkChanges-very-distributed.csv", "r")
-        allLines = logfile.readlines()
+        tracefile = open(self.tracefile, "r")
+        allLines = tracefile.readlines()
         allLines.remove(allLines[0])
-        logfile.close()
+        tracefile.close()
 
         # get maxX, minX, maxY, minY
         area = self.getMaximumsAndMinimums(allLines)
