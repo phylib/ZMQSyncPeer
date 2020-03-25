@@ -62,14 +62,7 @@ class Server (threading.Thread):
         area = self.getMaximumsAndMinimums(allLines)
         print("\nAREA: maxX: %d, minX: %d, maxY: %d, minY: %d\n" %(area.maxX, area.minX, area.maxY, area.minY))
 
-        # get the shifting distance for x and y
-        treeSize = 65536
-        width = area.maxX - area.minX
-        height = area.maxY - area.minY
-        xCenter = area.minX + (width / 2)
-        yCenter = area.minY + (height / 2)
-        xShift = int((treeSize / 2) - xCenter)
-        yShift = int((treeSize / 2) - yCenter)
+        shiftingDistances = self.getShiftingDistances(area)
 
         while count < 20:
             line = allLines[count].strip('\n').split('\t')[1]
@@ -79,7 +72,7 @@ class Server (threading.Thread):
 
             #split the line in different coordinates and update them in the
             #versions-Dictionary
-            self.checkSingleCoordinates(line, xShift, yShift)
+            self.checkSingleCoordinates(line, shiftingDistances[0], shiftingDistances[1])
 
             #if chunkChanges not empty
             if(len(self.chunkChanges.chunks)>0):
@@ -207,6 +200,7 @@ class Server (threading.Thread):
         of the area where all changes are happening.
         :param lines: all lines of the file where we read the changes from
         :type lines: list of strings
+        :return: the rectangle representing the whole area
         """
         maxX = -math.inf
         maxY = -math.inf
@@ -227,3 +221,20 @@ class Server (threading.Thread):
                 if(y < minY):
                     minY = y
         return Rectangle(minX, maxY, maxY, minY)
+
+    def getShiftingDistances(self, area):
+        """
+        Calculate the shifting distance for
+        the coordinates.
+        :param area: the whole area where changes are happening
+        :type area: Rectangle
+        :return: tuple of the shifting distance for x and the shifting distance for y
+        """
+        treeSize = 65536
+        width = area.maxX - area.minX
+        height = area.maxY - area.minY
+        xCenter = area.minX + (width / 2)
+        yCenter = area.minY + (height / 2)
+        xShift = int((treeSize / 2) - xCenter)
+        yShift = int((treeSize / 2) - yCenter)
+        return (xShift, yShift)
