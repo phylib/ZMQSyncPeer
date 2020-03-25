@@ -22,7 +22,11 @@ class Server (threading.Thread):
            :param port: specifies the port number on which the server broadcasts its updates
            :type port: int
            :param coordinates: defines the rectangle to observe in the form x1,y1,x2,y2
-           :type coordinates: string
+           :type coordinates: str
+           :param tracefile: the path to the tracefile which the server reads from
+           :type tracefile: str
+           :param testing: if true the server only reads 20 lines from the tracefile, else it reads everything
+           :type testing: bool
            :param peer: defines the peer of which the server is part of
            :type peer: Peer (if defined), default is None
         """
@@ -65,9 +69,7 @@ class Server (threading.Thread):
         print("\nAREA: maxX: %d, minX: %d, maxY: %d, minY: %d\n" %(area.maxX, area.minX, area.maxY, area.minY))
 
         shiftingDistances = self.getShiftingDistances(area)
-
         allLines.extend(["EOF"])
-
         line = allLines[count]
 
         while line!="EOF":
@@ -116,7 +118,7 @@ class Server (threading.Thread):
         rectangle the server has to observe. Keep track
         of the version of the relevant coordinates.
         :param line: contains the coordinates of all changes at a certain point in time
-        :type line: string
+        :type line: str
         :param xShift: the shifting distance for the x-coordinate
         :type xShift: int
         :param yShift: the shifting distance for the y-coordinate
@@ -140,7 +142,7 @@ class Server (threading.Thread):
         in our version-dictionary, then update its version.
         Else add it to the dictionary with version 1.
         :param key: the coordinates of a certain change
-        :type key: string
+        :type key: str
         """
         if(key in self.versions):
             self.versions[key]+=1;
@@ -181,7 +183,7 @@ class Server (threading.Thread):
         :param data: the version of this chunk
         :type data: int
         :param eof: represents if this is the last message or not
-        :type eof: boolean
+        :type eof: bool
         """
         if(eof==True):
             del self.chunkChanges.chunks[:]
@@ -198,7 +200,9 @@ class Server (threading.Thread):
         :param chunks: the list of changed chunks
         :type chunks: list of Chunk-objects
         :param timestamp: the point of time where the update happened
-        :type time
+        :type timestamp: time
+        :param numChanges: the number of changed relevant chunks per line of the tracefile
+        :type: int
         """
         if(self.peer!=None):
             for chunk in chunks:
