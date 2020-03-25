@@ -68,9 +68,12 @@ class Server (threading.Thread):
 
         allLines.extend(["EOF"])
 
-        while count < 20:
-            line = allLines[count].strip('\n').split('\t')[1]
+        line = allLines[count]
 
+        while line!="EOF":
+            if (self.testing and count == 20):
+                break
+            line = line.strip('\n').split('\t')[1]
             #reset this list before the changes of the next line are observed
             del self.chunkChanges.chunks[:]
 
@@ -91,6 +94,8 @@ class Server (threading.Thread):
             count += 1
             time.sleep(0.5) # seconds
 
+            line = allLines[count]
+
         #print final versions-Dictionary
         self.printVersions()
         self.createChunk(0, 0, 0, True)
@@ -102,7 +107,6 @@ class Server (threading.Thread):
             print("[localhost:%d]: SERVER shutting down ... " %(self.port))
             self.peer.shutdown()
             self.socket.close()
-            print("LAST LINE: %s" %allLines[len(allLines)-1])
 
 
     def checkSingleCoordinates(self, line, xShift, yShift):
