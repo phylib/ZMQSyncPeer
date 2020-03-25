@@ -57,6 +57,7 @@ class Server (threading.Thread):
            in the servers assigned area then the server publishes an update.
            The message format for the updates are defined in chunkChanges.proto.
            These messages are serialized to strings and compressed with gzip before they are sent.
+           The observed changes are also logged in the logfile of the peer's logger-instance.
         """
         count = 0
         tracefile = open(self.tracefile, "r")
@@ -196,10 +197,10 @@ class Server (threading.Thread):
 
     def logChunkChanges(self, chunks, timestamp, numChanges):
         """
-        Write all the sent updates in a logfile.
+        Write the sent update in a logfile.
         :param chunks: the list of changed chunks
         :type chunks: list of Chunk-objects
-        :param timestamp: the point of time where the update happened
+        :param timestamp: the point of time at which the update happened
         :type timestamp: time
         :param numChanges: the number of changed relevant chunks per line of the tracefile
         :type: int
