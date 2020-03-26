@@ -5,6 +5,7 @@ import gzip
 import math
 import protoGen.chunkChanges_pb2
 from rectangle import Rectangle
+import logging
 
 class Server (threading.Thread):
     """
@@ -30,6 +31,7 @@ class Server (threading.Thread):
            :param peer: defines the peer of which the server is part of
            :type peer: Peer (if defined), default is None
         """
+        logging.info('[SERVER]: initializing')
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.PUB)
         self.port = port
@@ -59,12 +61,13 @@ class Server (threading.Thread):
            These messages are serialized to strings and compressed with gzip before they are sent.
            The observed changes are also logged in the logfile of the peer's logger-instance.
         """
+        logging.info('[SERVER]: running ...')
         count = 0
         tracefile = open(self.tracefile, "r")
         allLines = tracefile.readlines()
         allLines.remove(allLines[0])
         tracefile.close()
-
+        logging.info('[SERVER]: read tracefile -> %s', self.tracefile)
         # get maxX, minX, maxY, minY
         area = self.getMaximumsAndMinimums(allLines)
         print("\nAREA: maxX: %d, minX: %d, maxY: %d, minY: %d\n" %(area.maxX, area.minX, area.maxY, area.minY))
@@ -73,6 +76,7 @@ class Server (threading.Thread):
         allLines.extend(["EOF"])
         line = allLines[count]
 
+        logging.info('[SERVER]: starting to publish updates ...')
         while line!="EOF":
             if (self.testing and count == 20):
                 break
@@ -91,6 +95,7 @@ class Server (threading.Thread):
                 string = gzip.compress(string, 1);
                 self.printAllChunkChanges()
                 #print("[localhost:%d]: sent update %s" % (self.port, string))
+                logging.info('[SERVER]: published update')
                 self.socket.send(string)
                 self.logChunkChanges(self.chunkChanges.chunks, time.time(), len(self.chunkChanges.chunks))
 
@@ -105,11 +110,13 @@ class Server (threading.Thread):
         string = self.chunkChanges.SerializeToString()
         string = gzip.compress(string, 1)
         self.socket.send(string)
+        logging.info('[SERVER]: published end-message')
 
         if(self.peer != None):
             print("[localhost:%d]: SERVER shutting down ... " %(self.port))
             self.peer.shutdown()
             self.socket.close()
+            logging.info('[SERVER]: shut down')
 
 
     def checkSingleCoordinates(self, line, xShift, yShift):

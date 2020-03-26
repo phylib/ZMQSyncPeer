@@ -3,6 +3,7 @@ import threading
 import time
 import gzip
 import protoGen.chunkChanges_pb2
+import logging
 
 class Client (threading.Thread):
     """
@@ -19,13 +20,14 @@ class Client (threading.Thread):
            :param peer: defines the peer of which the client is part of
            :type peer: Peer (if defined), default is None
         """
+        logging.info('[CLIENT@%s]: initializing' % address)
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.SUB)
         self.hostport = hostport
         self.address = address
         self.peer = peer
         self.chunkChanges = protoGen.chunkChanges_pb2.ChunkChanges();
-        self.chunkChanges.hashKnown = False;
+        self.chunkChanges.hashKnown = False
         threading.Thread.__init__(self)
 
     def run(self):
@@ -50,16 +52,19 @@ class Client (threading.Thread):
             self.zip_filter = self.zip_filter.decode('ascii')
         # Subscribe to hostport
         self.socket.setsockopt_string(zmq.SUBSCRIBE, self.zip_filter)
+        logging.info('[CLIENT@%s]: subscribed to localhost:%d' % (self.address, self.hostport))
 
         while True:
             string = self.socket.recv()
             string = gzip.decompress(string)
             self.chunkChanges.ParseFromString(string);
             if(len(self.chunkChanges.chunks)==1 and self.chunkChanges.chunks[0].eof == True):
+                logging.info('[CLIENT@%s]: received end-message from localhost:%d' % (self.address, self.hostport))
                 break;
-
+            logging.info('[CLIENT@%s]: received update from localhost:%d' % (self.address, self.hostport))
             self.logChunkChanges(self.chunkChanges.chunks, time.time())
             self.printAllChunkChanges()
+            logging.info('[CLIENT@%s]: processed update from localhost:%d' % (self.address, self.hostport))
             #print("[%s]: got update %s" % (self.address, string))
 
 
@@ -70,6 +75,7 @@ class Client (threading.Thread):
         """
         print("[%s]: CLIENT shutting down ... "  % (self.address))
         self.socket.close()
+        logging.info('[CLIENT@%s]: shut down' % (self.address))
 
     def printAllChunkChanges(self):
         """

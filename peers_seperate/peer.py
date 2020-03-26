@@ -1,8 +1,10 @@
 from client import Client
 from server import Server
-from logging.logger import Logger
+from log.logger import Logger
 import os
 import argparse
+import logging
+
 
 class Peer:
     """
@@ -34,10 +36,12 @@ class Peer:
            :param testing: if true the server only reads 20 lines from the tracefile, else it reads everything
            :type testing: bool
         """
+        logging.info('[PEER]: initializing')
         self.logger = Logger(logDir);
         self.clients = []
         self.server = Server(hostport, coordinates, tracefile, testing, self)
         self.addresses = others.split(',')
+
         for i in range(len(self.addresses)):
             self.clients.append(Client(hostport, self.addresses[i].strip(), self))
 
@@ -49,6 +53,7 @@ class Peer:
         for client in self.clients:
             client.join()
 
+
     def shutdown(self):
         """
         This method is called when the server shuts down.
@@ -58,6 +63,7 @@ class Peer:
         for client in self.clients:
             client.shutdown()
         self.logger.closeFile()
+        logging.info('[PEER]: shut down')
 
 if __name__ == "__main__":
     """
@@ -66,6 +72,9 @@ if __name__ == "__main__":
     Here the necessary arguments are parsed 
     and passed to the peer.
     """
+    logging.basicConfig(filename='app.log', filemode='w', level=logging.INFO)
+    logging.info("Entering main...")
+
     parser = argparse.ArgumentParser(description='Start a peer with one server and several clients.')
 
     parser.add_argument('--serverPort', type=int,
@@ -97,5 +106,8 @@ if __name__ == "__main__":
         paramsLog.write("--serverPort=%d\n--clients=%s\n--coordinates=%s\n--logDir=%s"
                     %(args.serverPort, args.clients, args.coordinates, args.logDir));
         paramsLog.close()
+        logging.info('Logged cmd arguments')
         Peer(args.serverPort, args.clients, args.coordinates, args.tracefile, args.logDir, args.testing)
+        logging.info("Exiting main...")
+
 

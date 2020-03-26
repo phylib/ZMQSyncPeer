@@ -1,0 +1,163 @@
+INFO:root:Entering main...
+INFO:root:Logged cmd arguments
+INFO:root:[PEER]: initializing
+INFO:root:[SERVER]: initializing
+INFO:root:[CLIENT@localhost:5557]: initializing
+INFO:root:[CLIENT@localhost:5558]: initializing
+INFO:root:[CLIENT@localhost:5559]: initializing
+INFO:root:[SERVER]: running ...
+INFO:root:[CLIENT@localhost:5557]: subscribed to localhost:5556
+INFO:root:[CLIENT@localhost:5558]: subscribed to localhost:5556
+INFO:root:[CLIENT@localhost:5559]: subscribed to localhost:5556
+INFO:root:[SERVER]: read tracefile -> ChunkChanges-very-distributed.csv
+INFO:root:[SERVER]: starting to publish updates ...
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[SERVER]: published update
+INFO:root:[CLIENT@localhost:5558]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5558]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received update from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: processed update from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: processed update from localhost:5556
+INFO:root:[SERVER]: published end-message
+INFO:root:[CLIENT@localhost:5558]: received end-message from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: received end-message from localhost:5556
+INFO:root:[CLIENT@localhost:5559]: received end-message from localhost:5556
+INFO:root:[CLIENT@localhost:5557]: shut down
+INFO:root:[CLIENT@localhost:5558]: shut down
+INFO:root:[CLIENT@localhost:5559]: shut down
+INFO:root:[PEER]: shut down
+INFO:root:[SERVER]: shut down
+INFO:root:Exiting main...
