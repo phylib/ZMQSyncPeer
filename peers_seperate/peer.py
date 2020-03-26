@@ -36,7 +36,6 @@ class Peer:
            :param testing: if true the server only reads 20 lines from the tracefile, else it reads everything
            :type testing: bool
         """
-        logging.info('[PEER]: initializing')
         self.logger = Logger(logDir);
         self.clients = []
         self.server = Server(hostport, coordinates, tracefile, testing, self)
@@ -63,7 +62,6 @@ class Peer:
         for client in self.clients:
             client.shutdown()
         self.logger.closeFile()
-        logging.info('[PEER]: shut down')
 
 if __name__ == "__main__":
     """
