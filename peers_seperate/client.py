@@ -26,7 +26,7 @@ class Client (threading.Thread):
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.SUB)
         self.peer = peer
-        self.chunkChanges = protoGen.chunkChanges_pb2.ChunkChanges();
+        self.chunkChanges = protoGen.chunkChanges_pb2.ChunkChanges()
         self.chunkChanges.hashKnown = False
         threading.Thread.__init__(self)
 
@@ -57,11 +57,11 @@ class Client (threading.Thread):
         while True:
             string = self.socket.recv()
             string = gzip.decompress(string)
-            self.chunkChanges.ParseFromString(string);
+            self.chunkChanges.ParseFromString(string)
             if(len(self.chunkChanges.chunks)==1 and self.chunkChanges.chunks[0].eof == True):
                 self.logInfo('received end-message from %s' % (self.address))
                 self.shutdown()
-                break;
+                break
             self.logInfo('received update from %s' % (self.address))
             self.logChunkChanges(self.chunkChanges.chunks, time.time())
             self.printAllChunkChanges()
@@ -76,7 +76,7 @@ class Client (threading.Thread):
         close the socket.
         """
         logging.debug("[CLIENT@localhost:%d]: CLIENT shutting down ... "  % (self.hostport))
-        self.socket.unsubscribe(self.zip_filter);
+        self.socket.unsubscribe(self.zip_filter)
         self.socket.close()
         self.logInfo('shut down')
 

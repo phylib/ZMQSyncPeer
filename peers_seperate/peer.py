@@ -39,7 +39,7 @@ class Peer:
            :param testing: if true the server only reads 20 lines from the tracefile, else it reads everything
            :type testing: bool
         """
-        self.logger = Logger(logDir);
+        self.logger = Logger(logDir)
         self.clients = []
         self.server = Server(hostport, coordinates, tracefile, testing, self)
         self.addresses = others.split(',')
@@ -121,9 +121,9 @@ if __name__ == "__main__":
         sys.exit()
     else:
         # log the params in file
-        paramsLog = open("params.log", "w");
+        paramsLog = open("params.log", "w")
         paramsLog.write("--serverPort=%d\n--clients=%s\n--coordinates=%s\n--tracefile=%s\n--logDir=%s\n--testing=%s"
-                        % (args.serverPort, args.clients, args.coordinates, args.tracefile, args.logDir, args.testing));
+                        % (args.serverPort, args.clients, args.coordinates, args.tracefile, args.logDir, args.testing))
         paramsLog.close()
         logging.info('Logged cmd arguments')
         Peer(args.serverPort, args.clients, args.coordinates, args.tracefile, args.logDir, args.testing)

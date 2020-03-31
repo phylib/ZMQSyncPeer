@@ -42,9 +42,9 @@ class Server (threading.Thread):
         self.versions = {}
         self.rectangle = Rectangle(int(coordinates.split(',')[0]), int(coordinates.split(',')[1]),
                                    int(coordinates.split(',')[2]), int(coordinates.split(',')[3]))
-        self.chunk = protoGen.chunkChanges_pb2.Chunk();
-        self.chunkChanges = protoGen.chunkChanges_pb2.ChunkChanges();
-        self.chunkChanges.hashKnown = False;
+        self.chunk = protoGen.chunkChanges_pb2.Chunk()
+        self.chunkChanges = protoGen.chunkChanges_pb2.ChunkChanges()
+        self.chunkChanges.hashKnown = False
         threading.Thread.__init__(self)
 
 
@@ -91,7 +91,7 @@ class Server (threading.Thread):
             #if chunkChanges not empty
             if(len(self.chunkChanges.chunks)>0):
                 string = self.chunkChanges.SerializeToString()
-                string = gzip.compress(string, 1);
+                string = gzip.compress(string, 1)
                 self.printAllChunkChanges()
                 #print("[localhost:%d]: sent update %s" % (self.port, string))
                 self.logInfo('published update')
@@ -138,7 +138,7 @@ class Server (threading.Thread):
             coordinate = str("%d,%d" %(x,y))
 
             if (self.rectangle.inRectangle(x, y)):
-                self.updateVersion(coordinate);
+                self.updateVersion(coordinate)
 
                 # send protobuf-message
                 self.createChunk(x, y, self.versions[coordinate], False)
