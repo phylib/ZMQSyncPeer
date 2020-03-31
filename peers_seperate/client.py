@@ -85,7 +85,7 @@ class Client (threading.Thread):
         string = ""
         for chunk in self.chunkChanges.chunks:
             string+= str(chunk.x) + "," + str(chunk.y) + ";"
-        print("[%s]: got update %s" % (self.address, string))
+        logging.debug("[%s]: got update %s" % (self.address, string))
 
     def logChunkChanges(self, chunks, timestamp):
         """

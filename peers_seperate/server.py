@@ -178,7 +178,7 @@ class Server (threading.Thread):
         string = ""
         for chunk in self.chunkChanges.chunks:
             string+= str(chunk.x) + "," + str(chunk.y) + ";"
-        print("[localhost:%d]: sent update %s" % (self.port, string))
+        logging.debug("[localhost:%d]: sent update %s" % (self.port, string))
 
     def createChunk(self, x, y, data, eof):
         """
