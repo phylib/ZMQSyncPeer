@@ -10,21 +10,21 @@ class Client (threading.Thread):
     The client class subscribes to a server
     and reads its published updates.
     """
-    def __init__(self, serverAddress, address, peer=None):
+    def __init__(self, hostport, address, peer=None):
         """
            Initializes the client.
-           :param serverAddress: specifies the IP-address and port number on which the server broadcasts its updates
-           :type serverAddress: str
+           :param hostport: specifies the port number on which the server broadcasts its updates
+           :type hostport: int
            :param address: the IP-address and the port number of the client in the form IP-address:port number
            :type address: str
            :param peer: defines the peer of which the client is part of
            :type peer: Peer (if defined), default is None
         """
         self.address = address
+        self.hostport = hostport
         self.logInfo('initializing')
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.SUB)
-        self.serverAddress = serverAddress
         self.peer = peer
         self.chunkChanges = protoGen.chunkChanges_pb2.ChunkChanges();
         self.chunkChanges.hashKnown = False
@@ -45,26 +45,26 @@ class Client (threading.Thread):
         peer's logger instance. The reading process is
         stopped if the server sends the last message.
         """
-        logging.debug("[%s]: connecting to server …" %(self.address))
-        self.socket.connect("tcp://%s" %(self.serverAddress) )
+        logging.debug("[CLIENT@localhost:%d]: connecting to SERVER@%s" %(self.hostport, self.address))
+        self.socket.connect("tcp://%s" %(self.address))
         self.zip_filter = ''
         if isinstance(self.zip_filter, bytes):
             self.zip_filter = self.zip_filter.decode('ascii')
-        # Subscribe to server
+        # Subscribe to hostport
         self.socket.setsockopt_string(zmq.SUBSCRIBE, self.zip_filter)
-        self.logInfo('subscribed to %s' % (self.serverAddress))
+        self.logInfo('subscribed to %s' %self.address)
 
         while True:
             string = self.socket.recv()
             string = gzip.decompress(string)
             self.chunkChanges.ParseFromString(string);
             if(len(self.chunkChanges.chunks)==1 and self.chunkChanges.chunks[0].eof == True):
-                self.logInfo('received end-message from %s' % (self.serverAddress))
+                self.logInfo('received end-message from %s' % (self.address))
                 break;
-            self.logInfo('received update from %s' % (self.serverAddress))
+            self.logInfo('received update from %s' % (self.address))
             self.logChunkChanges(self.chunkChanges.chunks, time.time())
             self.printAllChunkChanges()
-            self.logInfo('processed update from %s' % (self.serverAddress))
+            self.logInfo('processed update from %s' % (self.address))
             #print("[%s]: got update %s" % (self.address, string))
 
 
@@ -74,7 +74,7 @@ class Client (threading.Thread):
         the corresponding socket is closed.
         """
         logging.debug("[%s]: CLIENT shutting down ... "  % (self.address))
-        self.socket.close()
+       # self.socket.close()
         self.logInfo('shut down')
 
     def printAllChunkChanges(self):
@@ -99,4 +99,4 @@ class Client (threading.Thread):
                 self.peer.logger.logChunkUpdateReceived(chunk, timestamp)
 
     def logInfo(self, message):
-        logging.info('[CLIENT@%s]: %s' % (self.address, message))
+        logging.info('[CLIENT@localhost:%d]: %s' % (self.hostport, message))

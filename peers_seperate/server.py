@@ -114,7 +114,7 @@ class Server (threading.Thread):
         if(self.peer != None):
             logging.debug("[localhost:%d]: SERVER shutting down ... " %(self.port))
             self.peer.shutdown()
-            self.socket.close()
+           # self.socket.close()
             self.logInfo('shut down')
 
 
@@ -153,9 +153,9 @@ class Server (threading.Thread):
         :type key: str
         """
         if(key in self.versions):
-            self.versions[key]+=1;
+            self.versions[key]+=1
         else:
-            self.versions[key]=1;
+            self.versions[key]=1
 
     def printVersions(self):
         """
@@ -165,7 +165,7 @@ class Server (threading.Thread):
         """
         print("\n### All coordinates and their final versions: ###")
         for x, y in self.versions.items():
-            print(x + ": " + str(y));
+            print(x + ": " + str(y))
         print("\n")
 
     def printAllChunkChanges(self):

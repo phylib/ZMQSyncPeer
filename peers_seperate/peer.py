@@ -21,7 +21,7 @@ class Peer:
 
     """
 
-    def __init__(self, server, others, coordinates, tracefile, logDir, testing):
+    def __init__(self, hostport, others, coordinates, tracefile, logDir, testing):
         """
            Initializes the peer.
            :param hostport: specifies the port number on which the server broadcasts its updates
@@ -39,11 +39,11 @@ class Peer:
         """
         self.logger = Logger(logDir);
         self.clients = []
-        self.server = Server(int(server.split(':')[1]), coordinates, tracefile, testing, self)
+        self.server = Server(hostport, coordinates, tracefile, testing, self)
         self.addresses = others.split(',')
 
         for i in range(len(self.addresses)):
-            self.clients.append(Client(server, self.addresses[i].strip(), self))
+            self.clients.append(Client(hostport, self.addresses[i].strip(), self))
 
         self.server.start()
         for i in range(len(self.clients)):
@@ -61,7 +61,7 @@ class Peer:
         """
         for client in self.clients:
             client.shutdown()
-        self.logger.closeFile()
+        #self.logger.closeFile()
 
 
 def configure_loggers(logFolder, console=False):
@@ -98,8 +98,8 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Start a peer with one server and several clients.')
 
-    parser.add_argument('--server', type=str, required=True,
-                        help='the IP-address and port number of the server; \nExample:"localhost:5556"')
+    parser.add_argument('--serverPort', type=int, required=True,
+                        help='the port number of the server')
 
     parser.add_argument('--clients', type=str, required=True,
                         help='IP-address and port of the clients; \nExample: "localhost:5557,localhost:5558,localhost:5559"')
@@ -128,9 +128,9 @@ if __name__ == "__main__":
     else:
         # log the params in file
         paramsLog = open("paramsLog.txt", "w");
-        paramsLog.write("--server=%s\n--clients=%s\n--coordinates=%s\n--logDir=%s"
-                        % (args.server, args.clients, args.coordinates, args.logDir));
+        paramsLog.write("--serverPort=%d\n--clients=%s\n--coordinates=%s\n--logDir=%s"
+                        % (args.serverPort, args.clients, args.coordinates, args.logDir));
         paramsLog.close()
         logging.info('Logged cmd arguments')
-        Peer(args.server, args.clients, args.coordinates, args.tracefile, args.logDir, args.testing)
+        Peer(args.serverPort, args.clients, args.coordinates, args.tracefile, args.logDir, args.testing)
         logging.info("Exiting main...")
