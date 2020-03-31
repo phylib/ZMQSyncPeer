@@ -20,7 +20,6 @@ class Client (threading.Thread):
            :param peer: defines the peer of which the client is part of
            :type peer: Peer (if defined), default is None
         """
-        self.lock = threading.Lock()
         self.address = address
         self.logInfo('initializing')
         self.context = zmq.Context()
@@ -46,7 +45,7 @@ class Client (threading.Thread):
         peer's logger instance. The reading process is
         stopped if the server sends the last message.
         """
-        print("[%s]: connecting to server …" %(self.address))
+        logging.debug("[%s]: connecting to server …" %(self.address))
         self.socket.connect("tcp://localhost:%d" %(self.hostport) )
         self.zip_filter = ''
         if isinstance(self.zip_filter, bytes):
@@ -74,7 +73,7 @@ class Client (threading.Thread):
         When the peer is shutting the client down
         the corresponding socket is closed.
         """
-        print("[%s]: CLIENT shutting down ... "  % (self.address))
+        logging.debug("[%s]: CLIENT shutting down ... "  % (self.address))
         self.socket.close()
         self.logInfo('shut down')
 
@@ -100,6 +99,4 @@ class Client (threading.Thread):
                 self.peer.logger.logChunkUpdateReceived(chunk, timestamp)
 
     def logInfo(self, message):
-        self.lock.acquire()
         logging.info('[CLIENT@%s]: %s' % (self.address, message))
-        self.lock.release()

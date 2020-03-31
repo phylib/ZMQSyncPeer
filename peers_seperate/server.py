@@ -31,7 +31,6 @@ class Server (threading.Thread):
            :param peer: defines the peer of which the server is part of
            :type peer: Peer (if defined), default is None
         """
-        self.lock = threading.Lock()
         self.port = port
         self.logInfo("initializing")
         self.context = zmq.Context()
@@ -71,7 +70,6 @@ class Server (threading.Thread):
         self.logInfo('read tracefile -> %s' % (self.tracefile))
         # get maxX, minX, maxY, minY
         area = self.getMaximumsAndMinimums(allLines)
-        print("\nAREA: maxX: %d, minX: %d, maxY: %d, minY: %d\n" %(area.maxX, area.minX, area.maxY, area.minY))
 
         shiftingDistances = self.getShiftingDistances(area)
         allLines.extend(["EOF"])
@@ -114,7 +112,7 @@ class Server (threading.Thread):
         self.logInfo('published end-message')
 
         if(self.peer != None):
-            print("[localhost:%d]: SERVER shutting down ... " %(self.port))
+            logging.debug("[localhost:%d]: SERVER shutting down ... " %(self.port))
             self.peer.shutdown()
             self.socket.close()
             self.logInfo('shut down')
@@ -264,6 +262,4 @@ class Server (threading.Thread):
         return (xShift, yShift)
 
     def logInfo(self, message):
-        self.lock.acquire()
         logging.info('[SERVER@localhost:%d]: %s' %(self.port, message))
-        self.lock.release()
