@@ -10,11 +10,11 @@ class Client (threading.Thread):
     The client class subscribes to a server
     and reads its published updates.
     """
-    def __init__(self, hostport, address, peer=None):
+    def __init__(self, serverAddress, address, peer=None):
         """
            Initializes the client.
-           :param hostport: specifies the port number on which the server broadcasts its updates
-           :type hostport: int
+           :param serverAddress: specifies the IP-address and port number on which the server broadcasts its updates
+           :type serverAddress: str
            :param address: the IP-address and the port number of the client in the form IP-address:port number
            :type address: str
            :param peer: defines the peer of which the client is part of
@@ -24,7 +24,7 @@ class Client (threading.Thread):
         self.logInfo('initializing')
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.SUB)
-        self.hostport = hostport
+        self.serverAddress = serverAddress
         self.peer = peer
         self.chunkChanges = protoGen.chunkChanges_pb2.ChunkChanges();
         self.chunkChanges.hashKnown = False
@@ -46,25 +46,25 @@ class Client (threading.Thread):
         stopped if the server sends the last message.
         """
         logging.debug("[%s]: connecting to server …" %(self.address))
-        self.socket.connect("tcp://localhost:%d" %(self.hostport) )
+        self.socket.connect("tcp://%s" %(self.serverAddress) )
         self.zip_filter = ''
         if isinstance(self.zip_filter, bytes):
             self.zip_filter = self.zip_filter.decode('ascii')
-        # Subscribe to hostport
+        # Subscribe to server
         self.socket.setsockopt_string(zmq.SUBSCRIBE, self.zip_filter)
-        self.logInfo('subscribed to localhost:%d' % (self.hostport))
+        self.logInfo('subscribed to %s' % (self.serverAddress))
 
         while True:
             string = self.socket.recv()
             string = gzip.decompress(string)
             self.chunkChanges.ParseFromString(string);
             if(len(self.chunkChanges.chunks)==1 and self.chunkChanges.chunks[0].eof == True):
-                self.logInfo('received end-message from localhost:%d' % (self.hostport))
+                self.logInfo('received end-message from %s' % (self.serverAddress))
                 break;
-            self.logInfo('received update from localhost:%d' % (self.hostport))
+            self.logInfo('received update from %s' % (self.serverAddress))
             self.logChunkChanges(self.chunkChanges.chunks, time.time())
             self.printAllChunkChanges()
-            self.logInfo('processed update from localhost:%d' % (self.hostport))
+            self.logInfo('processed update from %s' % (self.serverAddress))
             #print("[%s]: got update %s" % (self.address, string))
 
 
