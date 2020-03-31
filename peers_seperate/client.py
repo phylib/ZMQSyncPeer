@@ -60,6 +60,7 @@ class Client (threading.Thread):
             self.chunkChanges.ParseFromString(string);
             if(len(self.chunkChanges.chunks)==1 and self.chunkChanges.chunks[0].eof == True):
                 self.logInfo('received end-message from %s' % (self.address))
+                self.shutdown()
                 break;
             self.logInfo('received update from %s' % (self.address))
             self.logChunkChanges(self.chunkChanges.chunks, time.time())
@@ -70,11 +71,13 @@ class Client (threading.Thread):
 
     def shutdown(self):
         """
-        When the peer is shutting the client down
-        the corresponding socket is closed.
+        When the server which this client is subscribed to
+        stops publishing, then unsubscribe and
+        close the socket.
         """
-        logging.debug("[%s]: CLIENT shutting down ... "  % (self.address))
-       # self.socket.close()
+        logging.debug("[CLIENT@localhost:%d]: CLIENT shutting down ... "  % (self.hostport))
+        self.socket.unsubscribe(self.zip_filter);
+        self.socket.close()
         self.logInfo('shut down')
 
     def printAllChunkChanges(self):

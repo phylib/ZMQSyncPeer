@@ -113,8 +113,7 @@ class Server (threading.Thread):
 
         if(self.peer != None):
             logging.debug("[localhost:%d]: SERVER shutting down ... " %(self.port))
-            self.peer.shutdown()
-           # self.socket.close()
+            self.socket.close()
             self.logInfo('shut down')
 
 

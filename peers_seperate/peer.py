@@ -10,11 +10,13 @@ import logging
 class Peer:
     """
     The Peer class starts a server-thread and n client-threads
-    where each client is subscribed to the server.
+    where each client is subscribed to the server of another peer.
 
     Each peer consists of one server, one logger and n clients. The server
     as well as the clients are implemented as threads and started in the peer.
-    All clients are subscribed to the server.
+    All clients are subscribed to the server of another peer.
+    The server basically is the publishing part of the peer whereas
+    the clients listen to the updates of the other peers.
     When the peer is started via commandline several arguments are
     passed to it. These arguments are then passed to the server, the logger and
     the clients.
@@ -54,14 +56,8 @@ class Peer:
             client.join()
 
     def shutdown(self):
-        """
-        This method is called when the server shuts down.
-        The peer then shuts all clients down and tells
-        the logger to close the logfile.
-        """
-        for client in self.clients:
-            client.shutdown()
-        #self.logger.closeFile()
+        pass
+        # TODO: self.logger.closeFile() without crashing
 
 
 def configure_loggers(logFolder, console=False):
