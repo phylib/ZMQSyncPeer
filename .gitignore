@@ -4,3 +4,6 @@ ToDo
 commands
 */__pycache__
 __pycache__
+peers_seperate/params.log
+peers_seperate/log/app.log
+peers_seperate/log/changes.log

@@ -1,6 +1,0 @@
---serverPort=5556
---clients=localhost:5557, localhost:5558, localhost:5559
---coordinates=0,65000,65000,0
---tracefile=ChunkChanges-very-distributed.csv
---logDir=log
---testing=True
