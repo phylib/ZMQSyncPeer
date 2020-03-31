@@ -122,8 +122,8 @@ if __name__ == "__main__":
     else:
         # log the params in file
         paramsLog = open("params.log", "w");
-        paramsLog.write("--serverPort=%d\n--clients=%s\n--coordinates=%s\n--logDir=%s"
-                        % (args.serverPort, args.clients, args.coordinates, args.logDir));
+        paramsLog.write("--serverPort=%d\n--clients=%s\n--coordinates=%s\n--tracefile=%s\n--logDir=%s\n--testing=%s"
+                        % (args.serverPort, args.clients, args.coordinates, args.tracefile, args.logDir, args.testing));
         paramsLog.close()
         logging.info('Logged cmd arguments')
         Peer(args.serverPort, args.clients, args.coordinates, args.tracefile, args.logDir, args.testing)

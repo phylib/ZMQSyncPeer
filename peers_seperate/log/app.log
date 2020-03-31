@@ -30432,3 +30432,558 @@ om localhost:5559
 2020-03-31 14:21:23,695 [INFO] [SERVER@localhost:5556]: shut down
 2020-03-31 14:21:23,740 [INFO] Exiting main...
 2020-03-31 14:21:23,691 [INFO] Exiting main...
+2020-03-31 14:30:47,084 [INFO] Entering main...
+2020-03-31 14:30:47,088 [INFO] Logged cmd arguments
+2020-03-31 14:30:47,090 [INFO] [SERVER@localhost:5557]: initializing
+2020-03-31 14:30:47,129 [INFO] [CLIENT@localhost:5557]: initializing
+2020-03-31 14:30:47,170 [INFO] [CLIENT@localhost:5557]: initializing
+2020-03-31 14:30:47,210 [INFO] [CLIENT@localhost:5557]: initializing
+2020-03-31 14:30:47,247 [INFO] [SERVER@localhost:5557]: running ...
+2020-03-31 14:30:47,254 [INFO] [CLIENT@localhost:5557]: subscribed to localhost:5556
+2020-03-31 14:30:47,284 [INFO] [CLIENT@localhost:5557]: subscribed to localhost:5558
+2020-03-31 14:30:47,292 [INFO] [CLIENT@localhost:5557]: subscribed to localhost:5559
+2020-03-31 14:30:47,324 [INFO] [SERVER@localhost:5557]: read tracefile -> ChunkChanges-very-distributed.csv
+2020-03-31 14:30:48,206 [INFO] [SERVER@localhost:5557]: starting to publish updates ...
+2020-03-31 14:30:48,208 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:48,784 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:49,332 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:49,872 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:50,410 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:50,490 [INFO] Entering main...
+2020-03-31 14:30:50,584 [INFO] Logged cmd arguments
+2020-03-31 14:30:50,598 [INFO] [SERVER@localhost:5558]: initializing
+2020-03-31 14:30:50,633 [INFO] [CLIENT@localhost:5558]: initializing
+2020-03-31 14:30:50,696 [INFO] [CLIENT@localhost:5558]: initializing
+2020-03-31 14:30:50,738 [INFO] [CLIENT@localhost:5558]: initializing
+2020-03-31 14:30:50,779 [INFO] [SERVER@localhost:5558]: running ...
+2020-03-31 14:30:50,820 [INFO] [CLIENT@localhost:5558]: subscribed to localhost:5557
+2020-03-31 14:30:50,835 [INFO] [CLIENT@localhost:5558]: subscribed to localhost:5556
+2020-03-31 14:30:50,847 [INFO] [CLIENT@localhost:5558]: subscribed to localhost:5559
+2020-03-31 14:30:50,855 [INFO] [SERVER@localhost:5558]: read tracefile -> ChunkChanges-very-distributed.csv
+2020-03-31 14:30:50,942 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:50,957 [INFO] [CLIENT@localhost:5558]: received update from localhost:5557
+2020-03-31 14:30:50,971 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5557
+2020-03-31 14:30:51,467 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:51,514 [INFO] [CLIENT@localhost:5558]: received update from localhost:5557
+2020-03-31 14:30:51,554 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5557
+2020-03-31 14:30:51,668 [INFO] Entering main...
+2020-03-31 14:30:51,675 [INFO] Logged cmd arguments
+2020-03-31 14:30:51,677 [INFO] [SERVER@localhost:5559]: initializing
+2020-03-31 14:30:51,702 [INFO] [CLIENT@localhost:5559]: initializing
+2020-03-31 14:30:51,722 [INFO] [CLIENT@localhost:5559]: initializing
+2020-03-31 14:30:51,744 [INFO] [CLIENT@localhost:5559]: initializing
+2020-03-31 14:30:51,776 [INFO] [SERVER@localhost:5559]: running ...
+2020-03-31 14:30:51,828 [INFO] [SERVER@localhost:5558]: starting to publish updates ...
+2020-03-31 14:30:51,830 [INFO] [CLIENT@localhost:5559]: subscribed to localhost:5557
+2020-03-31 14:30:51,832 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:30:51,849 [INFO] [CLIENT@localhost:5557]: received update from localhost:5558
+2020-03-31 14:30:51,844 [INFO] [CLIENT@localhost:5559]: subscribed to localhost:5558
+2020-03-31 14:30:51,851 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:30:51,853 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:30:51,852 [INFO] [SERVER@localhost:5559]: read tracefile -> ChunkChanges-very-distributed.csv
+2020-03-31 14:30:51,859 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5558
+2020-03-31 14:30:51,933 [INFO] [CLIENT@localhost:5559]: subscribed to localhost:5556
+2020-03-31 14:30:52,013 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:52,014 [INFO] [CLIENT@localhost:5558]: received update from localhost:5557
+2020-03-31 14:30:52,016 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5557
+2020-03-31 14:30:52,020 [INFO] [CLIENT@localhost:5559]: received update from localhost:5557
+2020-03-31 14:30:52,031 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5557
+2020-03-31 14:30:52,422 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:30:52,438 [INFO] [CLIENT@localhost:5557]: received update from localhost:5558
+2020-03-31 14:30:52,459 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:30:52,442 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:30:52,474 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5558
+2020-03-31 14:30:52,552 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:52,557 [INFO] [CLIENT@localhost:5558]: received update from localhost:5557
+2020-03-31 14:30:52,558 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5557
+2020-03-31 14:30:52,563 [INFO] [CLIENT@localhost:5559]: received update from localhost:5557
+2020-03-31 14:30:52,564 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5557
+2020-03-31 14:30:52,978 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:30:52,997 [INFO] [CLIENT@localhost:5557]: received update from localhost:5558
+2020-03-31 14:30:53,001 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:30:52,995 [INFO] [SERVER@localhost:5559]: starting to publish updates ...
+2020-03-31 14:30:52,997 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:30:53,011 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5558
+2020-03-31 14:30:53,011 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:30:53,012 [INFO] [CLIENT@localhost:5557]: received update from localhost:5559
+2020-03-31 14:30:53,022 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5559
+2020-03-31 14:30:53,012 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:30:53,025 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5559
+2020-03-31 14:30:53,074 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:53,076 [INFO] [CLIENT@localhost:5558]: received update from localhost:5557
+2020-03-31 14:30:53,077 [INFO] [CLIENT@localhost:5559]: received update from localhost:5557
+2020-03-31 14:30:53,081 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5557
+2020-03-31 14:30:53,087 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5557
+2020-03-31 14:30:53,504 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:30:53,506 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:30:53,507 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5558
+2020-03-31 14:30:53,506 [INFO] [CLIENT@localhost:5557]: received update from localhost:5558
+2020-03-31 14:30:53,508 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:30:53,523 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:30:53,524 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:30:53,527 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5559
+2020-03-31 14:30:53,525 [INFO] [CLIENT@localhost:5557]: received update from localhost:5559
+2020-03-31 14:30:53,528 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5559
+2020-03-31 14:30:53,687 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:53,688 [INFO] [CLIENT@localhost:5558]: received update from localhost:5557
+2020-03-31 14:30:53,688 [INFO] [CLIENT@localhost:5559]: received update from localhost:5557
+2020-03-31 14:30:53,691 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5557
+2020-03-31 14:30:53,689 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5557
+2020-03-31 14:30:54,028 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:30:54,030 [INFO] [CLIENT@localhost:5557]: received update from localhost:5558
+2020-03-31 14:30:54,029 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:30:54,030 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:30:54,032 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5558
+2020-03-31 14:30:54,032 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:30:54,035 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5559
+2020-03-31 14:30:54,033 [INFO] [CLIENT@localhost:5557]: received update from localhost:5559
+2020-03-31 14:30:54,034 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:30:54,037 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5559
+2020-03-31 14:30:54,120 [INFO] Entering main...
+2020-03-31 14:30:54,122 [INFO] Logged cmd arguments
+2020-03-31 14:30:54,124 [INFO] [SERVER@localhost:5556]: initializing
+2020-03-31 14:30:54,150 [INFO] [CLIENT@localhost:5556]: initializing
+2020-03-31 14:30:54,171 [INFO] [CLIENT@localhost:5556]: initializing
+2020-03-31 14:30:54,191 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:54,194 [INFO] [CLIENT@localhost:5556]: initializing
+e from localhost:5557
+2020-03-31 14:30:54,197 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5557
+2020-03-31 14:30:54,196 [INFO] [CLIENT@localhost:5559]: received update from localhost:5557
+2020-03-31 14:30:54,198 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5557
+2020-03-31 14:30:54,220 [INFO] [SERVER@localhost:5556]: running ...
+2020-03-31 14:30:54,223 [INFO] [CLIENT@localhost:5556]: subscribed to localhost:5557
+2020-03-31 14:30:54,248 [INFO] [CLIENT@localhost:5556]: subscribed to localhost:5558
+2020-03-31 14:30:54,252 [INFO] [CLIENT@localhost:5556]: subscribed to localhost:5559
+2020-03-31 14:30:54,292 [INFO] [SERVER@localhost:5556]: read tracefile -> ChunkChanges-very-distributed.csv
+2020-03-31 14:30:54,532 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:30:54,533 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:30:54,533 [INFO] [CLIENT@localhost:5557]: received update from localhost:5558
+2020-03-31 14:30:54,536 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5558
+2020-03-31 14:30:54,536 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:30:54,536 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:30:54,537 [INFO] [CLIENT@localhost:5557]: received update from localhost:5559
+2020-03-31 14:30:54,538 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5559
+2020-03-31 14:30:54,537 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:30:54,539 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5559
+2020-03-31 14:30:54,539 [INFO] [CLIENT@localhost:5556]: received update from localhost:5559
+2020-03-31 14:30:54,539 [INFO] [CLIENT@localhost:5556]: received update from localhost:5558
+2020-03-31 14:30:54,565 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5559
+2020-03-31 14:30:54,590 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5558
+2020-03-31 14:30:54,696 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:54,697 [INFO] [CLIENT@localhost:5558]: received update from localhost:5557
+2020-03-31 14:30:54,700 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5557
+2020-03-31 14:30:54,698 [INFO] [CLIENT@localhost:5559]: received update from localhost:5557
+2020-03-31 14:30:54,701 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5557
+2020-03-31 14:30:54,710 [INFO] [CLIENT@localhost:5556]: received update from localhost:5557
+2020-03-31 14:30:54,727 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5557
+2020-03-31 14:30:55,035 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:30:55,036 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:30:55,037 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5558
+2020-03-31 14:30:55,036 [INFO] [CLIENT@localhost:5557]: received update from localhost:5558
+2020-03-31 14:30:55,038 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:30:55,039 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:30:55,040 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:30:55,042 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5559
+2020-03-31 14:30:55,041 [INFO] [CLIENT@localhost:5557]: received update from localhost:5559
+2020-03-31 14:30:55,043 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5559
+2020-03-31 14:30:55,041 [INFO] [CLIENT@localhost:5556]: received update from localhost:5559
+2020-03-31 14:30:55,046 [INFO] [CLIENT@localhost:5556]: received update from localhost:5558
+2020-03-31 14:30:55,063 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5558
+2020-03-31 14:30:55,058 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5559
+2020-03-31 14:30:55,199 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:55,200 [INFO] [CLIENT@localhost:5558]: received update from localhost:5557
+2020-03-31 14:30:55,202 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5557
+2020-03-31 14:30:55,201 [INFO] [CLIENT@localhost:5559]: received update from localhost:5557
+2020-03-31 14:30:55,204 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5557
+2020-03-31 14:30:55,211 [INFO] [CLIENT@localhost:5556]: received update from localhost:5557
+2020-03-31 14:30:55,226 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5557
+2020-03-31 14:30:55,362 [INFO] [SERVER@localhost:5556]: starting to publish updates ...
+2020-03-31 14:30:55,363 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:30:55,364 [INFO] [CLIENT@localhost:5558]: received update from localhost:5556
+2020-03-31 14:30:55,364 [INFO] [CLIENT@localhost:5559]: received update from localhost:5556
+2020-03-31 14:30:55,365 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:30:55,366 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5556
+2020-03-31 14:30:55,366 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5556
+2020-03-31 14:30:55,537 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:30:55,539 [INFO] [CLIENT@localhost:5557]: received update from localhost:5558
+2020-03-31 14:30:55,539 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:30:55,539 [INFO] [CLIENT@localhost:5556]: received update from localhost:5558
+2020-03-31 14:30:55,541 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:30:55,541 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5558
+2020-03-31 14:30:55,541 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5558
+2020-03-31 14:30:55,543 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:30:55,544 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:30:55,545 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5559
+2020-03-31 14:30:55,544 [INFO] [CLIENT@localhost:5556]: received update from localhost:5559
+2020-03-31 14:30:55,546 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5559
+2020-03-31 14:30:55,703 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:55,704 [INFO] [CLIENT@localhost:5559]: received update from localhost:5557
+2020-03-31 14:30:55,704 [INFO] [CLIENT@localhost:5558]: received update from localhost:5557
+2020-03-31 14:30:55,704 [INFO] [CLIENT@localhost:5556]: received update from localhost:5557
+2020-03-31 14:30:55,706 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5557
+2020-03-31 14:30:55,705 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5557
+2020-03-31 14:30:55,706 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5557
+2020-03-31 14:30:55,866 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:30:55,867 [INFO] [CLIENT@localhost:5559]: received update from localhost:5556
+2020-03-31 14:30:55,868 [INFO] [CLIENT@localhost:5558]: received update from localhost:5556
+2020-03-31 14:30:55,870 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5556
+2020-03-31 14:30:55,869 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:30:55,872 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5556
+2020-03-31 14:30:55,872 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5556
+2020-03-31 14:30:56,040 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:30:56,041 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:30:56,042 [INFO] [CLIENT@localhost:5557]: received update from localhost:5558
+2020-03-31 14:30:56,042 [INFO] [CLIENT@localhost:5556]: received update from localhost:5558
+2020-03-31 14:30:56,043 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5558
+2020-03-31 14:30:56,044 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:30:56,046 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:30:56,047 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:30:56,048 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5559
+2020-03-31 14:30:56,047 [INFO] [CLIENT@localhost:5556]: received update from localhost:5559
+2020-03-31 14:30:56,047 [INFO] [CLIENT@localhost:5557]: received update from localhost:5559
+2020-03-31 14:30:56,050 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5559
+2020-03-31 14:30:56,050 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5559
+2020-03-31 14:30:56,205 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:56,207 [INFO] [CLIENT@localhost:5559]: received update from localhost:5557
+2020-03-31 14:30:56,207 [INFO] [CLIENT@localhost:5558]: received update from localhost:5557
+2020-03-31 14:30:56,207 [INFO] [CLIENT@localhost:5556]: received update from localhost:5557
+2020-03-31 14:30:56,208 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5557
+2020-03-31 14:30:56,208 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5557
+2020-03-31 14:30:56,208 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5557
+2020-03-31 14:30:56,371 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:30:56,372 [INFO] [CLIENT@localhost:5559]: received update from localhost:5556
+2020-03-31 14:30:56,372 [INFO] [CLIENT@localhost:5558]: received update from localhost:5556
+2020-03-31 14:30:56,372 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:30:56,372 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5556
+2020-03-31 14:30:56,374 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5556
+2020-03-31 14:30:56,374 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5556
+2020-03-31 14:30:56,543 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:30:56,544 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:30:56,545 [INFO] [CLIENT@localhost:5557]: received update from localhost:5558
+2020-03-31 14:30:56,548 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:30:56,546 [INFO] [CLIENT@localhost:5556]: received update from localhost:5558
+2020-03-31 14:30:56,548 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5558
+2020-03-31 14:30:56,549 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5558
+2020-03-31 14:30:56,550 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:30:56,551 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:30:56,551 [INFO] [CLIENT@localhost:5556]: received update from localhost:5559
+2020-03-31 14:30:56,551 [INFO] [CLIENT@localhost:5557]: received update from localhost:5559
+2020-03-31 14:30:56,553 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5559
+2020-03-31 14:30:56,553 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5559
+2020-03-31 14:30:56,553 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5559
+2020-03-31 14:30:56,709 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:56,710 [INFO] [CLIENT@localhost:5558]: received update from localhost:5557
+2020-03-31 14:30:56,710 [INFO] [CLIENT@localhost:5559]: received update from localhost:5557
+2020-03-31 14:30:56,711 [INFO] [CLIENT@localhost:5556]: received update from localhost:5557
+2020-03-31 14:30:56,713 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5557
+2020-03-31 14:30:56,713 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5557
+2020-03-31 14:30:56,713 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5557
+2020-03-31 14:30:56,873 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:30:56,874 [INFO] [CLIENT@localhost:5559]: received update from localhost:5556
+2020-03-31 14:30:56,877 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5556
+2020-03-31 14:30:56,875 [INFO] [CLIENT@localhost:5558]: received update from localhost:5556
+2020-03-31 14:30:56,879 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5556
+2020-03-31 14:30:56,876 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:30:56,880 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5556
+2020-03-31 14:30:57,049 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:30:57,050 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:30:57,052 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5558
+2020-03-31 14:30:57,050 [INFO] [CLIENT@localhost:5557]: received update from localhost:5558
+2020-03-31 14:30:57,053 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5558
+2020-03-31 14:30:57,053 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:30:57,053 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:30:57,054 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:30:57,054 [INFO] [CLIENT@localhost:5556]: received update from localhost:5559
+
+2020-03-31 14:30:57,055 [INFO] [CLIENT@localhost:5557]: received update from localhost:5559
+2020-03-31 14:30:57,056 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5559
+2020-03-31 14:30:57,056 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5559
+2020-03-31 14:30:57,213 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:57,214 [INFO] [CLIENT@localhost:5558]: received update from localhost:5557
+2020-03-31 14:30:57,215 [INFO] [CLIENT@localhost:5556]: received update from localhost:5557
+2020-03-31 14:30:57,217 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5557
+2020-03-31 14:30:57,217 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5557
+2020-03-31 14:30:57,217 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5557
+2020-03-31 14:30:57,377 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:30:57,378 [INFO] [CLIENT@localhost:5559]: received update from localhost:5556
+2020-03-31 14:30:57,378 [INFO] [CLIENT@localhost:5558]: received update from localhost:5556
+2020-03-31 14:30:57,379 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:30:57,380 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5556
+2020-03-31 14:30:57,380 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5556
+2020-03-31 14:30:57,551 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:30:57,552 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:30:57,554 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5558
+2020-03-31 14:30:57,553 [INFO] [CLIENT@localhost:5556]: received update from localhost:5558
+2020-03-31 14:30:57,554 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:30:57,554 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5558
+2020-03-31 14:30:57,555 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:30:57,556 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:30:57,557 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5559
+2020-03-31 14:30:57,557 [INFO] [CLIENT@localhost:5557]: received update from localhost:5559
+2020-03-31 14:30:57,558 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5559
+2020-03-31 14:30:57,558 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5559
+2020-03-31 14:30:57,718 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:57,719 [INFO] [CLIENT@localhost:5558]: received update from localhost:5557
+2020-03-31 14:30:57,719 [INFO] [CLIENT@localhost:5559]: received update from localhost:5557
+2020-03-31 14:30:57,720 [INFO] [CLIENT@localhost:5556]: received update from localhost:5557
+2020-03-31 14:30:57,723 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5557
+2020-03-31 14:30:57,724 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5557
+2020-03-31 14:30:57,722 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5557
+2020-03-31 14:30:57,879 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:30:57,881 [INFO] [CLIENT@localhost:5558]: received update from localhost:5556
+2020-03-31 14:30:57,881 [INFO] [CLIENT@localhost:5559]: received update from localhost:5556
+2020-03-31 14:30:57,881 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:30:57,883 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5556
+2020-03-31 14:30:57,883 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5556
+2020-03-31 14:30:57,883 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5556
+2020-03-31 14:30:58,055 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:30:58,056 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:30:58,058 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5558
+2020-03-31 14:30:58,056 [INFO] [CLIENT@localhost:5557]: received update from localhost:5558
+2020-03-31 14:30:58,059 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:30:58,057 [INFO] [CLIENT@localhost:5556]: received update from localhost:5558
+2020-03-31 14:30:58,060 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5558
+2020-03-31 14:30:58,062 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:30:58,063 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:30:58,064 [INFO] [CLIENT@localhost:5556]: received update from localhost:5559
+2020-03-31 14:30:58,067 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5559
+2020-03-31 14:30:58,064 [INFO] [CLIENT@localhost:5557]: received update from localhost:5559
+2020-03-31 14:30:58,066 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5559
+2020-03-31 14:30:58,068 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5559
+2020-03-31 14:30:58,221 [INFO] [SERVER@localhost:5557]: published update
+2020-03-31 14:30:58,222 [INFO] [CLIENT@localhost:5559]: received update from localhost:5557
+2020-03-31 14:30:58,222 [INFO] [CLIENT@localhost:5558]: received update from localhost:5557
+2020-03-31 14:30:58,223 [INFO] [CLIENT@localhost:5556]: received update from localhost:5557
+2020-03-31 14:30:58,225 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5557
+2020-03-31 14:30:58,224 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5557
+2020-03-31 14:30:58,224 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5557
+2020-03-31 14:30:58,382 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:30:58,384 [INFO] [CLIENT@localhost:5558]: received update from localhost:5556
+2020-03-31 14:30:58,385 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5556
+2020-03-31 14:30:58,384 [INFO] [CLIENT@localhost:5559]: received update from localhost:5556
+2020-03-31 14:30:58,384 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:30:58,387 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5556
+2020-03-31 14:30:58,387 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5556
+2020-03-31 14:30:58,559 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:30:58,560 [INFO] [CLIENT@localhost:5557]: received update from localhost:5558
+2020-03-31 14:30:58,560 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:30:58,561 [INFO] [CLIENT@localhost:5556]: received update from localhost:5558
+2020-03-31 14:30:58,562 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:30:58,562 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5558
+2020-03-31 14:30:58,563 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5558
+2020-03-31 14:30:58,567 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:30:58,568 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:30:58,568 [INFO] [CLIENT@localhost:5556]: received update from localhost:5559
+2020-03-31 14:30:58,569 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5559
+2020-03-31 14:30:58,568 [INFO] [CLIENT@localhost:5557]: received update from localhost:5559
+2020-03-31 14:30:58,570 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5559
+2020-03-31 14:30:58,570 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5559
+2020-03-31 14:30:58,727 [INFO] [CLIENT@localhost:5558]: received end-message from localhost:5557
+2020-03-31 14:30:58,727 [INFO] [CLIENT@localhost:5559]: received end-message from localhost:5557
+2020-03-31 14:30:58,728 [INFO] [CLIENT@localhost:5556]: received end-message from localhost:5557
+2020-03-31 14:30:58,727 [INFO] [SERVER@localhost:5557]: published end-message
+2020-03-31 14:30:58,732 [INFO] [CLIENT@localhost:5559]: shut down
+2020-03-31 14:30:58,729 [INFO] [CLIENT@localhost:5558]: shut down
+2020-03-31 14:30:58,731 [INFO] [CLIENT@localhost:5556]: shut down
+2020-03-31 14:30:58,734 [INFO] [SERVER@localhost:5557]: shut down
+2020-03-31 14:30:58,884 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:30:58,885 [INFO] [CLIENT@localhost:5559]: received update from localhost:5556
+2020-03-31 14:30:58,885 [INFO] [CLIENT@localhost:5558]: received update from localhost:5556
+2020-03-31 14:30:58,886 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:30:58,888 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5556
+2020-03-31 14:30:58,889 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5556
+2020-03-31 14:30:58,889 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5556
+2020-03-31 14:30:59,062 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:30:59,063 [INFO] [CLIENT@localhost:5557]: received update from localhost:5558
+2020-03-31 14:30:59,063 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:30:59,064 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:30:59,063 [INFO] [CLIENT@localhost:5556]: received update from localhost:5558
+2020-03-31 14:30:59,065 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5558
+2020-03-31 14:30:59,065 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5558
+2020-03-31 14:30:59,069 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:30:59,071 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:30:59,070 [INFO] [CLIENT@localhost:5556]: received update from localhost:5559
+2020-03-31 14:30:59,072 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5559
+2020-03-31 14:30:59,071 [INFO] [CLIENT@localhost:5557]: received update from localhost:5559
+2020-03-31 14:30:59,073 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5559
+2020-03-31 14:30:59,074 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5559
+2020-03-31 14:30:59,388 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:30:59,390 [INFO] [CLIENT@localhost:5558]: received update from localhost:5556
+2020-03-31 14:30:59,389 [INFO] [CLIENT@localhost:5559]: received update from localhost:5556
+2020-03-31 14:30:59,390 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:30:59,391 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5556
+2020-03-31 14:30:59,392 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5556
+2020-03-31 14:30:59,564 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:30:59,566 [INFO] [CLIENT@localhost:5557]: received update from localhost:5558
+2020-03-31 14:30:59,566 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:30:59,566 [INFO] [CLIENT@localhost:5556]: received update from localhost:5558
+2020-03-31 14:30:59,568 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:30:59,568 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5558
+2020-03-31 14:30:59,568 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5558
+2020-03-31 14:30:59,575 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:30:59,576 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:30:59,577 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5559
+2020-03-31 14:30:59,578 [INFO] [CLIENT@localhost:5556]: received update from localhost:5559
+2020-03-31 14:30:59,579 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5559
+2020-03-31 14:30:59,891 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:30:59,892 [INFO] [CLIENT@localhost:5559]: received update from localhost:5556
+2020-03-31 14:30:59,893 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:30:59,893 [INFO] [CLIENT@localhost:5558]: received update from localhost:5556
+2020-03-31 14:30:59,894 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5556
+2020-03-31 14:30:59,895 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5556
+2020-03-31 14:31:00,068 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:31:00,069 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:31:00,072 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5558
+2020-03-31 14:31:00,070 [INFO] [CLIENT@localhost:5557]: received update from localhost:5558
+2020-03-31 14:31:00,074 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:31:00,070 [INFO] [CLIENT@localhost:5556]: received update from localhost:5558
+2020-03-31 14:31:00,075 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5558
+2020-03-31 14:31:00,081 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:31:00,083 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:31:00,086 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5559
+2020-03-31 14:31:00,084 [INFO] [CLIENT@localhost:5556]: received update from localhost:5559
+2020-03-31 14:31:00,088 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5559
+2020-03-31 14:31:00,084 [INFO] [CLIENT@localhost:5557]: received update from localhost:5559
+2020-03-31 14:31:00,089 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5559
+2020-03-31 14:31:00,395 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:31:00,396 [INFO] [CLIENT@localhost:5559]: received update from localhost:5556
+2020-03-31 14:31:00,396 [INFO] [CLIENT@localhost:5558]: received update from localhost:5556
+2020-03-31 14:31:00,396 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:31:00,398 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5556
+2020-03-31 14:31:00,398 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5556
+2020-03-31 14:31:00,398 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5556
+2020-03-31 14:31:00,573 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:31:00,574 [INFO] [CLIENT@localhost:5557]: received update from localhost:5558
+2020-03-31 14:31:00,574 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:31:00,574 [INFO] [CLIENT@localhost:5556]: received update from localhost:5558
+2020-03-31 14:31:00,575 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:31:00,576 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5558
+2020-03-31 14:31:00,587 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:31:00,588 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:31:00,589 [INFO] [CLIENT@localhost:5556]: received update from localhost:5559
+2020-03-31 14:31:00,591 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5559
+2020-03-31 14:31:00,590 [INFO] [CLIENT@localhost:5557]: received update from localhost:5559
+2020-03-31 14:31:00,593 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5559
+2020-03-31 14:31:00,593 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5559
+2020-03-31 14:31:00,897 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:31:00,898 [INFO] [CLIENT@localhost:5558]: received update from localhost:5556
+2020-03-31 14:31:00,898 [INFO] [CLIENT@localhost:5559]: received update from localhost:5556
+2020-03-31 14:31:00,899 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:31:00,900 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5556
+2020-03-31 14:31:00,901 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5556
+2020-03-31 14:31:01,076 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:31:01,077 [INFO] [CLIENT@localhost:5557]: received update from localhost:5558
+2020-03-31 14:31:01,077 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:31:01,077 [INFO] [CLIENT@localhost:5556]: received update from localhost:5558
+2020-03-31 14:31:01,079 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5558
+2020-03-31 14:31:01,079 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5558
+2020-03-31 14:31:01,079 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:31:01,092 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:31:01,093 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:31:01,093 [INFO] [CLIENT@localhost:5556]: received update from localhost:5559
+2020-03-31 14:31:01,094 [INFO] [CLIENT@localhost:5557]: received update from localhost:5559
+2020-03-31 14:31:01,096 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5559
+2020-03-31 14:31:01,096 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5559
+2020-03-31 14:31:01,399 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:31:01,400 [INFO] [CLIENT@localhost:5559]: received update from localhost:5556
+2020-03-31 14:31:01,400 [INFO] [CLIENT@localhost:5558]: received update from localhost:5556
+2020-03-31 14:31:01,401 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:31:01,402 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5556
+2020-03-31 14:31:01,403 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5556
+2020-03-31 14:31:01,403 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5556
+2020-03-31 14:31:01,579 [INFO] [SERVER@localhost:5558]: published update
+2020-03-31 14:31:01,580 [INFO] [CLIENT@localhost:5559]: received update from localhost:5558
+2020-03-31 14:31:01,580 [INFO] [CLIENT@localhost:5557]: received update from localhost:5558
+2020-03-31 14:31:01,580 [INFO] [CLIENT@localhost:5556]: received update from localhost:5558
+2020-03-31 14:31:01,582 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5558
+2020-03-31 14:31:01,582 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5558
+2020-03-31 14:31:01,595 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:31:01,597 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:31:01,597 [INFO] [CLIENT@localhost:5556]: received update from localhost:5559
+2020-03-31 14:31:01,597 [INFO] [CLIENT@localhost:5557]: received update from localhost:5559
+2020-03-31 14:31:01,598 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5559
+2020-03-31 14:31:01,598 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5559
+2020-03-31 14:31:01,904 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:31:01,905 [INFO] [CLIENT@localhost:5558]: received update from localhost:5556
+2020-03-31 14:31:01,905 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:31:01,907 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5556
+2020-03-31 14:31:01,907 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5556
+2020-03-31 14:31:02,083 [INFO] [CLIENT@localhost:5559]: received end-message from localhost:5558
+2020-03-31 14:31:02,083 [INFO] [CLIENT@localhost:5557]: received end-message from localhost:5558
+2020-03-31 14:31:02,084 [INFO] [CLIENT@localhost:5556]: received end-message from localhost:5558
+2020-03-31 14:31:02,083 [INFO] [SERVER@localhost:5558]: published end-message
+2020-03-31 14:31:02,086 [INFO] [CLIENT@localhost:5556]: shut down
+2020-03-31 14:31:02,086 [INFO] [CLIENT@localhost:5557]: shut down
+2020-03-31 14:31:02,088 [INFO] [SERVER@localhost:5558]: shut down
+2020-03-31 14:31:02,098 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:31:02,098 [INFO] [CLIENT@localhost:5556]: received update from localhost:5559
+2020-03-31 14:31:02,098 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:31:02,099 [INFO] [CLIENT@localhost:5557]: received update from localhost:5559
+2020-03-31 14:31:02,100 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5559
+2020-03-31 14:31:02,100 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5559
+2020-03-31 14:31:02,407 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:31:02,408 [INFO] [CLIENT@localhost:5558]: received update from localhost:5556
+2020-03-31 14:31:02,408 [INFO] [CLIENT@localhost:5559]: received update from localhost:5556
+2020-03-31 14:31:02,408 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:31:02,411 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5556
+2020-03-31 14:31:02,411 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5556
+2020-03-31 14:31:02,411 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5556
+2020-03-31 14:31:02,601 [INFO] [SERVER@localhost:5559]: published update
+2020-03-31 14:31:02,602 [INFO] [CLIENT@localhost:5558]: received update from localhost:5559
+2020-03-31 14:31:02,602 [INFO] [CLIENT@localhost:5556]: received update from localhost:5559
+2020-03-31 14:31:02,603 [INFO] [CLIENT@localhost:5557]: received update from localhost:5559
+2020-03-31 14:31:02,604 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5559
+2020-03-31 14:31:02,605 [INFO] [CLIENT@localhost:5556]: processed update from localhost:5559
+2020-03-31 14:31:02,605 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5559
+2020-03-31 14:31:02,909 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:31:02,910 [INFO] [CLIENT@localhost:5559]: received update from localhost:5556
+2020-03-31 14:31:02,910 [INFO] [CLIENT@localhost:5558]: received update from localhost:5556
+2020-03-31 14:31:02,911 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:31:02,912 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5556
+2020-03-31 14:31:02,913 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5556
+2020-03-31 14:31:02,913 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5556
+2020-03-31 14:31:03,109 [INFO] [CLIENT@localhost:5557]: received end-message from localhost:5559
+2020-03-31 14:31:03,108 [INFO] [CLIENT@localhost:5556]: received end-message from localhost:5559
+2020-03-31 14:31:03,110 [INFO] [CLIENT@localhost:5557]: shut down
+2020-03-31 14:31:03,108 [INFO] [CLIENT@localhost:5558]: received end-message from localhost:5559
+2020-03-31 14:31:03,108 [INFO] [SERVER@localhost:5559]: published end-message
+2020-03-31 14:31:03,112 [INFO] [CLIENT@localhost:5556]: shut down
+2020-03-31 14:31:03,113 [INFO] [CLIENT@localhost:5558]: shut down
+2020-03-31 14:31:03,115 [INFO] [SERVER@localhost:5559]: shut down
+2020-03-31 14:31:03,413 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:31:03,414 [INFO] [CLIENT@localhost:5558]: received update from localhost:5556
+2020-03-31 14:31:03,414 [INFO] [CLIENT@localhost:5559]: received update from localhost:5556
+2020-03-31 14:31:03,415 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:31:03,416 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5556
+2020-03-31 14:31:03,416 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5556
+2020-03-31 14:31:03,417 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5556
+2020-03-31 14:31:03,916 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:31:03,917 [INFO] [CLIENT@localhost:5559]: received update from localhost:5556
+2020-03-31 14:31:03,918 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:31:03,919 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5556
+2020-03-31 14:31:03,919 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5556
+2020-03-31 14:31:03,920 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5556
+2020-03-31 14:31:04,420 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:31:04,421 [INFO] [CLIENT@localhost:5559]: received update from localhost:5556
+2020-03-31 14:31:04,421 [INFO] [CLIENT@localhost:5558]: received update from localhost:5556
+2020-03-31 14:31:04,421 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:31:04,423 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5556
+2020-03-31 14:31:04,423 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5556
+2020-03-31 14:31:04,423 [INFO] [CLIENT@localhost:5558]: processed update from localhost:5556
+2020-03-31 14:31:04,923 [INFO] [SERVER@localhost:5556]: published update
+2020-03-31 14:31:04,925 [INFO] [CLIENT@localhost:5559]: received update from localhost:5556
+2020-03-31 14:31:04,925 [INFO] [CLIENT@localhost:5558]: received update from localhost:5556
+2020-03-31 14:31:04,925 [INFO] [CLIENT@localhost:5557]: received update from localhost:5556
+2020-03-31 14:31:04,926 [INFO] [CLIENT@localhost:5559]: processed update from localhost:5556
+2020-03-31 14:31:04,927 [INFO] [CLIENT@localhost:5557]: processed update from localhost:5556
+2020-03-31 14:31:05,429 [INFO] [CLIENT@localhost:5559]: received end-message from localhost:5556
+2020-03-31 14:31:05,429 [INFO] [CLIENT@localhost:5558]: received end-message from localhost:5556
+2020-03-31 14:31:05,429 [INFO] [SERVER@localhost:5556]: published end-message
+2020-03-31 14:31:05,429 [INFO] [CLIENT@localhost:5557]: received end-message from localhost:5556
+2020-03-31 14:31:05,430 [INFO] [CLIENT@localhost:5558]: shut down
+2020-03-31 14:31:05,432 [INFO] [CLIENT@localhost:5557]: shut down
+2020-03-31 14:31:05,431 [INFO] [CLIENT@localhost:5559]: shut down
+2020-03-31 14:31:05,434 [INFO] Exiting main...
+2020-03-31 14:31:05,435 [INFO] [SERVER@localhost:5556]: shut down
+2020-03-31 14:31:05,486 [INFO] Exiting main...
+2020-03-31 14:31:05,483 [INFO] Exiting main...
