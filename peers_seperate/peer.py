@@ -121,7 +121,7 @@ if __name__ == "__main__":
         sys.exit()
     else:
         # log the params in file
-        paramsLog = open("paramsLog.txt", "w");
+        paramsLog = open("params.log", "w");
         paramsLog.write("--serverPort=%d\n--clients=%s\n--coordinates=%s\n--logDir=%s"
                         % (args.serverPort, args.clients, args.coordinates, args.logDir));
         paramsLog.close()

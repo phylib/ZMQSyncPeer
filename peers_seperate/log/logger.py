@@ -23,7 +23,7 @@ class Logger:
         self.logDir = logDir
         if(not(os.path.exists(self.logDir))):
             os.makedirs(self.logDir)
-        self.logFile = open(logDir+"/changeLog.txt", "w");
+        self.logFile = open(logDir+"/changes.log", "w");
         self.lock = threading.Lock();
 
     def logChunkUpdateProduced(self, chunk, timestamp, numChanges):
