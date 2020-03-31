@@ -2,6 +2,7 @@ from client import Client
 from server import Server
 from log.logger import Logger
 import os
+import sys
 import argparse
 import logging
 
@@ -52,7 +53,6 @@ class Peer:
         for client in self.clients:
             client.join()
 
-
     def shutdown(self):
         """
         This method is called when the server shuts down.
@@ -63,6 +63,31 @@ class Peer:
             client.shutdown()
         self.logger.closeFile()
 
+
+def configure_loggers(logFolder, console=False):
+
+    # Define log format
+    formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(message)s')
+
+    # Configure Default-Logger
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG)
+
+    if console:
+        # Configure logging to stdout
+        streamHandler = logging.StreamHandler()
+        streamHandler.setFormatter(formatter)
+        streamHandler.setLevel(logging.DEBUG)
+        logger.addHandler(streamHandler)
+
+    # Configure logging to File
+    fileHandler = logging.FileHandler(logFolder + '/app.log')
+    fileHandler.setFormatter(formatter)
+    fileHandler.setLevel(logging.INFO)
+    logger.addHandler(fileHandler)
+
+
+
 if __name__ == "__main__":
     """
     This method is called when the peer is 
@@ -70,42 +95,42 @@ if __name__ == "__main__":
     Here the necessary arguments are parsed 
     and passed to the peer.
     """
-    logging.basicConfig(filename='app.log', filemode='w', level=logging.INFO)
-    logging.info("Entering main...")
 
     parser = argparse.ArgumentParser(description='Start a peer with one server and several clients.')
 
-    parser.add_argument('--serverPort', type=int,
+    parser.add_argument('--serverPort', type=int, required=True,
                         help='the port number of the server')
 
-    parser.add_argument('--clients', type=str,
+    parser.add_argument('--clients', type=str, required=True,
                         help='IP-address and port of the clients; \nExample: "localhost:5557,localhost:5558,localhost:5559"')
 
-    parser.add_argument('--coordinates', type=str,
+    parser.add_argument('--coordinates', type=str, required=True,
                         help='coordinates of the left upper corner and the right lower corner for the rectangle '
                              'which the server should observe; \nExample: "0,65000,65000,0"')
 
-    parser.add_argument('--tracefile', type=str,
+    parser.add_argument('--tracefile', type=str, required=True,
                         help='the path to the tracefile which the server should read from')
 
-    parser.add_argument('--logDir', type=str,
-                        help='the directory in which the logfile should be saved')
+    parser.add_argument('--logDir', type=str, default="./log/",
+                        help='the directory in which the logfile should be saved [Default: ./log/]')
 
     parser.add_argument('--testing', action='store_true',
                         help="if this argument is specified the server will only read 20 lines of its tracefile, else it will read the whole file")
 
     args = parser.parse_args()
 
-    if(not(os.path.exists(args.tracefile))):
-        print("Path to tracefile does not exist!\n")
+    configure_loggers(args.logDir, console=args.testing)
+    logging.info("Entering main...")
+
+    if (not (os.path.exists(args.tracefile))):
+        logging.fatal("Path to tracefile does not exist!")
+        sys.exit()
     else:
         # log the params in file
         paramsLog = open("paramsLog.txt", "w");
         paramsLog.write("--serverPort=%d\n--clients=%s\n--coordinates=%s\n--logDir=%s"
-                    %(args.serverPort, args.clients, args.coordinates, args.logDir));
+                        % (args.serverPort, args.clients, args.coordinates, args.logDir));
         paramsLog.close()
         logging.info('Logged cmd arguments')
         Peer(args.serverPort, args.clients, args.coordinates, args.tracefile, args.logDir, args.testing)
         logging.info("Exiting main...")
-
-
