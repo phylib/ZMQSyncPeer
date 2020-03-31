@@ -55,10 +55,8 @@ class Peer:
         for client in self.clients:
             client.join()
 
-    def shutdown(self):
-        pass
-        # TODO: self.logger.closeFile() without crashing
-
+        #close the logfile when finished
+        self.logger.closeFile()
 
 def configure_loggers(logFolder, console=False):
 
