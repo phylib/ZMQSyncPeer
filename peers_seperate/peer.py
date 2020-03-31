@@ -2,6 +2,7 @@ from client import Client
 from server import Server
 from log.logger import Logger
 import os
+import sys
 import argparse
 import logging
 
@@ -52,7 +53,6 @@ class Peer:
         for client in self.clients:
             client.join()
 
-
     def shutdown(self):
         """
         This method is called when the server shuts down.
@@ -63,6 +63,7 @@ class Peer:
             client.shutdown()
         self.logger.closeFile()
 
+
 if __name__ == "__main__":
     """
     This method is called when the peer is 
@@ -70,7 +71,8 @@ if __name__ == "__main__":
     Here the necessary arguments are parsed 
     and passed to the peer.
     """
-    logging.basicConfig(filename='app.log', filemode='w', level=logging.INFO)
+    logging.basicConfig(filename='app.log', filemode='w', level=logging.INFO,
+                        format='%(asctime)s [%(levelname)s] %(message)s')
     logging.info("Entering main...")
 
     parser = argparse.ArgumentParser(description='Start a peer with one server and several clients.')
@@ -96,16 +98,15 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    if(not(os.path.exists(args.tracefile))):
-        print("Path to tracefile does not exist!\n")
+    if (not (os.path.exists(args.tracefile))):
+        logging.fatal("Path to tracefile does not exist!\n")
+        sys.exit()
     else:
         # log the params in file
         paramsLog = open("paramsLog.txt", "w");
         paramsLog.write("--serverPort=%d\n--clients=%s\n--coordinates=%s\n--logDir=%s"
-                    %(args.serverPort, args.clients, args.coordinates, args.logDir));
+                        % (args.serverPort, args.clients, args.coordinates, args.logDir));
         paramsLog.close()
         logging.info('Logged cmd arguments')
         Peer(args.serverPort, args.clients, args.coordinates, args.tracefile, args.logDir, args.testing)
         logging.info("Exiting main...")
-
-

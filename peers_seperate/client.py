@@ -101,5 +101,5 @@ class Client (threading.Thread):
 
     def logInfo(self, message):
         self.lock.acquire()
-        logging.info('(%s)\t[CLIENT@%s]: %s' % (time.time(), self.address, message))
+        logging.info('[CLIENT@%s]: %s' % (self.address, message))
         self.lock.release()

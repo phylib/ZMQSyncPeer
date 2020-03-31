@@ -265,5 +265,5 @@ class Server (threading.Thread):
 
     def logInfo(self, message):
         self.lock.acquire()
-        logging.info('(%s)\t[SERVER@localhost:%d]: %s' %(time.time(), self.port, message))
+        logging.info('[SERVER@localhost:%d]: %s' %(self.port, message))
         self.lock.release()
