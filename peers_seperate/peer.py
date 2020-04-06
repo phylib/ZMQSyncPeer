@@ -74,6 +74,9 @@ def configure_loggers(logFolder, console=False):
         streamHandler.setLevel(logging.DEBUG)
         logger.addHandler(streamHandler)
 
+    if not os.path.exists(logFolder):
+        os.makedirs(logFolder)
+
     # Configure logging to File
     fileHandler = logging.FileHandler(logFolder + '/app.log')
     fileHandler.setFormatter(formatter)
