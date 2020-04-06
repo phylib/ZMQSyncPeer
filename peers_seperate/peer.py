@@ -116,7 +116,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    configure_loggers(args.logDir, console=args.testing)
+    configure_loggers(args.logDir, True)
     logging.info("Entering main...")
 
     if (not (os.path.exists(args.tracefile))):
