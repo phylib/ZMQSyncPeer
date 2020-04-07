@@ -1,6 +1,7 @@
 import threading
 import os
 
+
 class Logger:
     """
     The Logger class is responsible for logging
@@ -14,6 +15,7 @@ class Logger:
     are marked with an IN-tag to represent it
     as an incoming update.
     """
+
     def __init__(self, logDir, logFileName):
         """
         Initializes the logger.
@@ -21,7 +23,7 @@ class Logger:
         :type logDir: str
         """
         self.logDir = logDir
-        if(not(os.path.exists(self.logDir))):
+        if (not (os.path.exists(self.logDir))):
             os.makedirs(self.logDir)
         self.logFile = open("{}/{}".format(logDir, logFileName), "w")
         self.lock = threading.Lock()
@@ -42,7 +44,8 @@ class Logger:
         :type numChanges: int
         """
         self.lock.acquire()
-        self.logFile.write("%s\tOUT\t%d\t%d\t%d\t%d\n" %(timestamp, chunk.x, chunk.y, chunk.data, numChanges))
+        self.logFile.write(
+            "%s\tOUT\t%d\t%d\t%d\t%d\n" % (int(timestamp * 1000), chunk.x, chunk.y, chunk.data, numChanges))
         self.lock.release()
 
     def logChunkUpdateReceived(self, chunk, timestamp):
@@ -59,7 +62,7 @@ class Logger:
         :type timestamp: time
         """
         self.lock.acquire()
-        self.logFile.write("%s\tIN\t%d\t%d\t%d\t\n" %(timestamp, chunk.x, chunk.y, chunk.data))
+        self.logFile.write("%s\tIN\t%d\t%d\t%d\t\n" % (int(timestamp * 1000), chunk.x, chunk.y, chunk.data))
         self.lock.release()
 
     def closeFile(self):
