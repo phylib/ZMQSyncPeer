@@ -14,7 +14,7 @@ class Logger:
     are marked with an IN-tag to represent it
     as an incoming update.
     """
-    def __init__(self, logDir):
+    def __init__(self, logDir, logFileName):
         """
         Initializes the logger.
         :param logDir: the path to the directory in which the logfile should be saved
@@ -23,7 +23,7 @@ class Logger:
         self.logDir = logDir
         if(not(os.path.exists(self.logDir))):
             os.makedirs(self.logDir)
-        self.logFile = open(logDir+"/changes.log", "w")
+        self.logFile = open("{}/{}".format(logDir, logFileName), "w")
         self.lock = threading.Lock()
 
     def logChunkUpdateProduced(self, chunk, timestamp, numChanges):

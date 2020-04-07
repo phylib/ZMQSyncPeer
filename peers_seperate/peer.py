@@ -39,7 +39,7 @@ class Peer:
            :param testing: if true the server only reads 20 lines from the tracefile, else it reads everything
            :type testing: bool
         """
-        self.logger = Logger(logDir)
+        self.logger = Logger(logDir, str(hostport) + "__chunklog.csv")
         self.clients = []
         self.server = Server(hostport, coordinates, tracefile, testing, self)
         self.addresses = others.split(',')
