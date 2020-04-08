@@ -95,7 +95,7 @@ class Client (threading.Thread):
         :param chunks: the list of coordinates in the received update
         :type chunks: list of Chunk-Objects
         :param timestamp: the point of time at which we received this update
-        :type timestamp: time
+        :type timestamp: float
         """
         if(self.peer!=None):
             for chunk in chunks:

@@ -39,13 +39,13 @@ class Logger:
         :param chunk: one coordinate pair of the update
         :type chunk: Chunk
         :param timestamp: the time at which the server sent the update
-        :type timestamp: time
+        :type timestamp: float
         :param numChanges: the number of changed coordinates in the current update
         :type numChanges: int
         """
         self.lock.acquire()
         self.logFile.write(
-            "%s\tOUT\t%d\t%d\t%d\t%d\n" % (int(timestamp * 1000), chunk.x, chunk.y, chunk.data, numChanges))
+            "%s\tOUT\t%d\t%d\t%d\t%d\n" % ((timestamp * 1000), chunk.x, chunk.y, chunk.data, numChanges))
         self.lock.release()
 
     def logChunkUpdateReceived(self, chunk, timestamp):
@@ -59,10 +59,10 @@ class Logger:
         :param chunk: one coordinate pair of the update
         :type chunk: Chunk
         :param timestamp: the time at which the client received the update
-        :type timestamp: time
+        :type timestamp: float
         """
         self.lock.acquire()
-        self.logFile.write("%s\tIN\t%d\t%d\t%d\t\n" % (int(timestamp * 1000), chunk.x, chunk.y, chunk.data))
+        self.logFile.write("%s\tIN\t%d\t%d\t%d\t\n" % ((timestamp * 1000), chunk.x, chunk.y, chunk.data))
         self.lock.release()
 
     def closeFile(self):

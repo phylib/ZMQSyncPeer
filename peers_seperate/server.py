@@ -95,8 +95,8 @@ class Server (threading.Thread):
                 self.printAllChunkChanges()
                 #print("[localhost:%d]: sent update %s" % (self.port, string))
                 self.logInfo('published update')
-                self.socket.send(string)
                 self.logChunkChanges(self.chunkChanges.chunks, time.time(), len(self.chunkChanges.chunks))
+                self.socket.send(string)
 
             count += 1
             time.sleep(0.5)
@@ -207,7 +207,7 @@ class Server (threading.Thread):
         :param chunks: the list of changed chunks
         :type chunks: list of Chunk-objects
         :param timestamp: the point of time at which the server sent the update
-        :type timestamp: time
+        :type timestamp: float
         :param numChanges: the number of changed relevant chunks per line of the tracefile
         :type: int
         """
