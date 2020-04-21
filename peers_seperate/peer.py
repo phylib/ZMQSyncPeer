@@ -39,7 +39,7 @@ class Peer:
            :param testing: if true the server only reads 20 lines from the tracefile, else it reads everything
            :type testing: bool
         """
-        self.logger = Logger(logDir, str(hostport) + "__chunklog.csv")
+        self.logger = Logger(logDir, str(hostport) + "_chunklog.csv")
         self.clients = []
         self.server = Server(hostport, coordinates, tracefile, testing, self)
         self.addresses = others.split(',')
@@ -58,7 +58,7 @@ class Peer:
         #close the logfile when finished
         self.logger.closeFile()
 
-def configure_loggers(logFolder, console=False):
+def configure_loggers(logFolder, logfilename, console=False):
 
     # Define log format
     formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(message)s')
@@ -78,7 +78,7 @@ def configure_loggers(logFolder, console=False):
         os.makedirs(logFolder)
 
     # Configure logging to File
-    fileHandler = logging.FileHandler(logFolder + '/app.log')
+    fileHandler = logging.FileHandler(logFolder + '/' + logfilename)
     fileHandler.setFormatter(formatter)
     fileHandler.setLevel(logging.INFO)
     logger.addHandler(fileHandler)
@@ -116,7 +116,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    configure_loggers(args.logDir, True)
+    configure_loggers(args.logDir, "gameserver_{}.log".format(args.serverPort), True)
     logging.info("Entering main...")
 
     if (not (os.path.exists(args.tracefile))):
