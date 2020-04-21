@@ -35,10 +35,12 @@ class Server (threading.Thread):
         self.logInfo("initializing")
         self.context = zmq.Context()
         self.socket = self.context.socket(zmq.PUB)
+        self.logInfo("Binding ZMQ socket")
         self.peer = peer
         self.tracefile = tracefile
         self.testing = testing
         self.socket.bind("tcp://*:%d" %(self.port))
+        self.logInfo("ZMQ socket successfully bound")
         self.versions = {}
         self.rectangle = Rectangle(int(coordinates.split(',')[0]), int(coordinates.split(',')[1]),
                                    int(coordinates.split(',')[2]), int(coordinates.split(',')[3]))
