@@ -4,7 +4,6 @@ ToDo
 commands
 */__pycache__
 __pycache__
-peers_seperate/params.log
-peers_seperate/*.csv
 peers_seperate/*.log
-
+peers_seperate/log/*.csv
+peers_seperate/log/*.log
