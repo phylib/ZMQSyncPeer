@@ -132,18 +132,19 @@ class Server (threading.Thread):
         :param yShift: the shifting distance for the y-coordinate
         :type yShift: int
         """
-        for coordinate in line.split(';'):
+        if line.strip() != "":
+            for coordinate in line.split(';'):
 
-            # shift x and y so that all coordinates are positive
-            x = int(coordinate.split(',')[0]) + xShift
-            y = int(coordinate.split(',')[1]) + yShift
-            coordinate = str("%d,%d" %(x,y))
+                # shift x and y so that all coordinates are positive
+                x = int(coordinate.split(',')[0]) + xShift
+                y = int(coordinate.split(',')[1]) + yShift
+                coordinate = str("%d,%d" %(x,y))
 
-            if (self.rectangle.inRectangle(x, y)):
-                self.updateVersion(coordinate)
+                if (self.rectangle.inRectangle(x, y)):
+                    self.updateVersion(coordinate)
 
-                # send protobuf-message
-                self.createChunk(x, y, self.versions[coordinate], False)
+                    # send protobuf-message
+                    self.createChunk(x, y, self.versions[coordinate], False)
 
     def updateVersion(self, key):
         """
@@ -232,17 +233,18 @@ class Server (threading.Thread):
 
         for line in lines:
             line = line.strip('\n').split('\t')[1]
-            for coordinates in line.split(";"):
-                x = int(coordinates.split(',')[0])
-                y = int(coordinates.split(',')[1])
-                if(x > maxX):
-                    maxX = x
-                if(x < minX):
-                    minX = x
-                if(y > maxY):
-                    maxY = y
-                if(y < minY):
-                    minY = y
+            if line.strip() != "":
+                for coordinates in line.split(";"):
+                    x = int(coordinates.split(',')[0])
+                    y = int(coordinates.split(',')[1])
+                    if(x > maxX):
+                        maxX = x
+                    if(x < minX):
+                        minX = x
+                    if(y > maxY):
+                        maxY = y
+                    if(y < minY):
+                        minY = y
         return Rectangle(minX, maxY, maxY, minY)
 
     def getShiftingDistances(self, area):
